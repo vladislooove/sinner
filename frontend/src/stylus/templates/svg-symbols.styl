@@ -1,0 +1,7 @@
+$svg-symbols = {}
+
+<% _.forEach( icons, function( icon ){ %>$svg-symbols.<%= icon.id %> = {};
+$svg-symbols.<%= icon.id %>.width = <%= parseInt(icon.width)/16 + 'rem' %>
+$svg-symbols.<%= icon.id %>.height = <%= parseInt(icon.height)/16 + 'rem' %>
+$svg-symbols.<%= icon.id %>.ratio = <%= parseInt(icon.height)/parseInt(icon.width) %>
+<% }); %>
