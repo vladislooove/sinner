@@ -12318,54 +12318,40 @@ var _react = __webpack_require__(6);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _sinsCategories = __webpack_require__(114);
-
-var _sinsCategories2 = _interopRequireDefault(_sinsCategories);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var AddSins = function AddSins() {
     return _react2.default.createElement(
-        'div',
-        { className: 'add-sins' },
+        "div",
+        { className: "add-sins" },
         _react2.default.createElement(
-            'div',
-            { className: 'add-sins__group' },
+            "div",
+            { className: "add-sins__group" },
             _react2.default.createElement(
-                'div',
-                { className: 'add-sins__title' },
-                'What have you done wrong?'
+                "div",
+                { className: "add-sins__title" },
+                "What have you done wrong?"
             ),
-            _react2.default.createElement('input', { className: 'add-sins__input',
-                placeholder: 'For example \'lied\'' })
+            _react2.default.createElement("input", { className: "add-sins__input",
+                placeholder: "For example 'lied'" })
         ),
         _react2.default.createElement(
-            'div',
-            { className: 'add-sins__group' },
+            "div",
+            { className: "add-sins__group" },
             _react2.default.createElement(
-                'div',
-                { className: 'add-sins__title' },
-                'What kind of sin have you done?'
+                "div",
+                { className: "add-sins__title" },
+                "What kind of sin have you done?"
             ),
-            _react2.default.createElement(
-                'select',
-                { name: 'categories' },
-                _sinsCategories2.default.map(function (el) {
-                    return _react2.default.createElement(
-                        'option',
-                        { key: el.circle },
-                        el.name
-                    );
-                })
-            )
+            _react2.default.createElement("select", { name: "categories" })
         ),
         _react2.default.createElement(
-            'div',
-            { className: 'add-sins__group' },
+            "div",
+            { className: "add-sins__group" },
             _react2.default.createElement(
-                'button',
-                { className: 'add-sins__submit' },
-                'OK'
+                "button",
+                { className: "add-sins__submit" },
+                "OK"
             )
         )
     );
@@ -12428,65 +12414,7 @@ var sins = function sins() {
 exports.default = sins;
 
 /***/ }),
-/* 114 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-var sinsCategories = [{
-    circle: 1,
-    name: 'Лимб',
-    description: 'Некрещёные младенцы и добродетельные нехристиане. До воскресения Христа здесь были все ветхозаветные праведники',
-    punishment: 'Вечное страдание безмолвной скорбью.'
-}, {
-    circle: 2,
-    name: 'Похоть',
-    description: 'Сладострастники',
-    punishment: 'Кручение и истязание ураганом, удары душ о скалы преисподней	'
-}, {
-    circle: 3,
-    name: 'Чревоугодие',
-    description: 'Обжоры и гурманы',
-    punishment: 'Гниение и разложение под палящим солнцем и проливным дождём.'
-}, {
-    circle: 4,
-    name: 'Скупость (жадность) и расточительство',
-    description: 'Плутос	Скупые и расточители — грешники, совершающие два противоположных греха (неумение совершать разумные траты)	',
-    punishment: 'Перетаскивание с места на место огромных тяжестей; души, столкнувшись друг с другом, вступают в яростный бой	'
-}, {
-    circle: 5,
-    name: 'Гнев (Стигийское болото)',
-    description: 'Гневные, унывающие',
-    punishment: 'Вечная драка в грязном болоте Стиксе, где дном служат тела скучающих'
-}, {
-    circle: 6,
-    name: 'Стены города Дита',
-    description: 'Еретики и лжеучители',
-    punishment: 'Лежать в раскалённых могилах. Надгробие отрыто, внутри могилы горит огонь — он раскаляет до красноты стенки гробницы.	'
-}, {
-    circle: 7,
-    name: 'Город ',
-    description: 'Тираны, разбойники и грабители, самоубийцы, азартные игроки и моты, богохульники, совершившие насилие над божествами, и содомиты',
-    punishment: 'Кипят во рву из раскалённой крови, а в тех, кто выныривает, стреляют кентавры.'
-}, {
-    circle: 8,
-    name: 'Злопазухи, или Злые Щели',
-    description: 'Cводники и обольстители, льстецы, взяточники, лицемеры, воры, лукавые советчики...',
-    punishment: 'Туловища закованы в скалы вниз головой, по ступням струится огонь'
-}, {
-    circle: 9,
-    name: 'Предательство (Ледяное озеро Коцит)',
-    description: 'Обманувшие доверившихся',
-    punishment: 'Вмёрзли в лёд по шею, и лица их обращены к низу'
-}];
-
-exports.default = sinsCategories;
-
-/***/ }),
+/* 114 */,
 /* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
