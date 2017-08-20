@@ -9,7 +9,7 @@ export default {
         return axios.get(apiPrefix + '/sins');
     },
 
-    addSisn(data){
+    addSins(data){
         return axios.post(apiPrefix + '/sins', data);
     },
 

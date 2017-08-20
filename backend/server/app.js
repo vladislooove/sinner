@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 import { serverPort } from './etc/config.json'
@@ -9,6 +10,7 @@ db.setUpConnection();
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 
 app.get('/sins', (req,res)=>{

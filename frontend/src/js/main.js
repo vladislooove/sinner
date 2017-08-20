@@ -6,11 +6,13 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 
 //reducers
+import combinedStore from './reducers/'
 
 //components
 import App from './components/App'
 
-let store = createStore( window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+let store = createStore(combinedStore, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+console.log(store.getState())
 
 ReactDOM.render(
     <Provider store={store}>
