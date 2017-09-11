@@ -13025,7 +13025,8 @@ var _sins2 = _interopRequireDefault(_sins);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var combinedStore = (0, _redux.combineReducers)({
-    sins: _sins2.default
+    sins: _sins2.default,
+    isLoading: false
 });
 
 exports.default = combinedStore;
@@ -13905,10 +13906,25 @@ var _api2 = _interopRequireDefault(_api);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var loadSins = exports.loadSins = function loadSins(sins) {
-    return {
-        type: 'LOAD_SINS',
-        sins: sins
+var loadSins = exports.loadSins = function loadSins(sins, isLoading) {
+    return function (dispatch) {
+        dispatch({
+            type: 'LOAD_SINS_START',
+            isLoading: isLoading
+        });
+
+        _api2.default.listSins().then(function (success) {
+            return dispatch({
+                type: 'LOAD_SINS_SUCCESS',
+                sins: sins,
+                isLoading: isLoading
+            });
+        }, function (error) {
+            return dispatch({
+                type: 'LOAD_SINS_ERROR',
+                isLoading: isLoading
+            });
+        });
     };
 };
 
@@ -14038,16 +14054,32 @@ var Sins = function (_React$Component) {
     }
 
     _createClass(Sins, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.props.loadSins();
+        }
+    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
                 'div',
                 null,
                 'Sins',
+                this.props.sins.length ? _react2.default.createElement(
+                    'ul',
+                    null,
+                    this.props.sins.map(function (item) {
+                        return _react2.default.createElement(
+                            'li',
+                            null,
+                            item
+                        );
+                    })
+                ) : '',
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.props.loadSins },
-                    'load'
+                    { onClick: console.log(this.props) },
+                    'click'
                 )
             );
         }
@@ -14093,6 +14125,10 @@ var _redux = __webpack_require__(39);
 
 var _reactRouterDom = __webpack_require__(67);
 
+var _reduxThunk = __webpack_require__(296);
+
+var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
+
 var _reducers = __webpack_require__(118);
 
 var _reducers2 = _interopRequireDefault(_reducers);
@@ -14104,7 +14140,7 @@ var _App2 = _interopRequireDefault(_App);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 //reducers
-var store = (0, _redux.createStore)(_reducers2.default, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__());
+var store = (0, _redux.createStore)(_reducers2.default, (0, _redux.applyMiddleware)(_reduxThunk2.default));
 
 //components
 
@@ -14143,9 +14179,14 @@ var sins = function sins() {
     var action = arguments[1];
 
     switch (action.type) {
-        case 'LOAD_SINS':
-            console.log(state);
-            return [].concat(_toConsumableArray(state), [_api2.default.listSins()]);
+        case 'LOAD_SINS_START':
+            return [].concat(_toConsumableArray(state), [state.isLoading]);
+
+        case 'LOAD_SINS_SUCCESS':
+            return [].concat(_toConsumableArray(state), [sins, state.isLoading]);
+
+        case 'LOAD_SINS_ERROR':
+            console.log('error');
 
         case 'ADD_SINS':
             return [].concat(_toConsumableArray(state));
@@ -29833,6 +29874,35 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 296 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+exports.__esModule = true;
+function createThunkMiddleware(extraArgument) {
+  return function (_ref) {
+    var dispatch = _ref.dispatch,
+        getState = _ref.getState;
+    return function (next) {
+      return function (action) {
+        if (typeof action === 'function') {
+          return action(dispatch, getState, extraArgument);
+        }
+
+        return next(action);
+      };
+    };
+  };
+}
+
+var thunk = createThunkMiddleware();
+thunk.withExtraArgument = createThunkMiddleware;
+
+exports['default'] = thunk;
 
 /***/ })
 /******/ ]);

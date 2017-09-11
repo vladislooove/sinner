@@ -14016,8 +14016,6 @@ var _reactRedux = __webpack_require__(66);
 
 var _actions = __webpack_require__(138);
 
-var _actions2 = _interopRequireDefault(_actions);
-
 var _api = __webpack_require__(41);
 
 var _api2 = _interopRequireDefault(_api);
@@ -14040,21 +14038,6 @@ var Sins = function (_React$Component) {
     }
 
     _createClass(Sins, [{
-        key: 'console',
-        value: function (_console) {
-            function console() {
-                return _console.apply(this, arguments);
-            }
-
-            console.toString = function () {
-                return _console.toString();
-            };
-
-            return console;
-        }(function () {
-            console.log(this.props.sins);
-        })
-    }, {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
@@ -14063,7 +14046,7 @@ var Sins = function (_React$Component) {
                 'Sins',
                 _react2.default.createElement(
                     'button',
-                    { onClick: this.console.bind(this) },
+                    { onClick: this.props.loadSins },
                     'load'
                 )
             );
@@ -14073,13 +14056,21 @@ var Sins = function (_React$Component) {
     return Sins;
 }(_react2.default.Component);
 
-exports.default = (0, _reactRedux.connect)(function (state) {
+var mapStateToProps = function mapStateToProps(state) {
     return {
         sins: state.sins
     };
-}, function (dispatch) {
-    return {};
-})(Sins);
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        loadSins: function loadSins() {
+            dispatch((0, _actions.loadSins)());
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Sins);
 
 /***/ }),
 /* 142 */
@@ -14153,7 +14144,8 @@ var sins = function sins() {
 
     switch (action.type) {
         case 'LOAD_SINS':
-            return state;
+            console.log(state);
+            return [].concat(_toConsumableArray(state), [_api2.default.listSins()]);
 
         case 'ADD_SINS':
             return [].concat(_toConsumableArray(state));

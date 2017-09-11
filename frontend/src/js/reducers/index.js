@@ -2,7 +2,8 @@ import { combineReducers } from 'redux'
 import sins from './sins'
 
 const combinedStore = combineReducers({
-    sins
+    sins,
+    isLoading: false
 })
 
 

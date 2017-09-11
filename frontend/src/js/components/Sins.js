@@ -5,14 +5,24 @@ import { loadSins } from '../actions/'
 import api from '../api/'
 
 class Sins extends React.Component{
+    componentDidMount(){
+        this.props.loadSins()
+    }
     render(){
         return(
             <div>
                 Sins
-                <button onClick={this.props.loadSins}>
-                    load
-                </button>
-            </div>
+                {this.props.sins.length ?
+                    <ul>
+                        {this.props.sins.map((item)=>{
+                            return (
+                                <li>{item}</li>
+                            )
+                        })}
+                    </ul>
+                    : ''}
+                    <button onClick={console.log(this.props)}>click</button>
+            </div> 
         )
     }
 }
