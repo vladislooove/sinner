@@ -14106,7 +14106,13 @@ var Sins = function (_React$Component) {
                         return _react2.default.createElement(
                             'li',
                             { key: item._id },
-                            item.name
+                            item.name,
+                            ', ',
+                            item.circle,
+                            ', ',
+                            item.createdAt,
+                            ', ',
+                            item.category
                         );
                     })
                 ) : '',

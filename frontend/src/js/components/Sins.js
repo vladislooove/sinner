@@ -16,7 +16,7 @@ class Sins extends React.Component{
                     <ul>
                         {this.props.sins.map((item)=>{
                             return (
-                                <li key={item._id}>{item.name}</li>
+                                <li key={item._id}>{item.name}, {item.circle}, {item.createdAt}, {item.category}</li>
                             )
                         })}
                     </ul>
