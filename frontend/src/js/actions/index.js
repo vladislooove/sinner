@@ -10,11 +10,15 @@ export const loadSins = (sins) => {
             response => dispatch({
                 type: 'LOAD_SINS_SUCCESS',
                 payload: response
+            },{
+                type: 'LOAD_SINS_END'
             })
         )
         .catch(
             error => dispatch({
                 type: 'LOAD_SINS_ERROR'
+            },{
+                type: 'LOAD_SINS_END'
             })
         )
     }

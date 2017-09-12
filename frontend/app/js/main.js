@@ -13949,10 +13949,14 @@ var loadSins = exports.loadSins = function loadSins(sins) {
             return dispatch({
                 type: 'LOAD_SINS_SUCCESS',
                 payload: response
+            }, {
+                type: 'LOAD_SINS_END'
             });
         }).catch(function (error) {
             return dispatch({
                 type: 'LOAD_SINS_ERROR'
+            }, {
+                type: 'LOAD_SINS_END'
             });
         });
     };
@@ -14105,7 +14109,8 @@ var Sins = function (_React$Component) {
                             item.name
                         );
                     })
-                ) : ''
+                ) : '',
+                this.props.isLoading ? 'loading' : ''
             );
         }
     }]);
@@ -14115,7 +14120,8 @@ var Sins = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        sins: state.sins
+        sins: state.sins,
+        isLoading: state.loading
     };
 };
 
@@ -29918,6 +29924,9 @@ var loading = function loading() {
     switch (action.type) {
         case 'LOAD_SINS_START':
             return true;
+
+        case 'LOAD_SINS_END':
+            return false;
 
         default:
             return false;

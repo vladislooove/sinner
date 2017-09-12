@@ -21,6 +21,7 @@ class Sins extends React.Component{
                         })}
                     </ul>
                     : ''}
+                {this.props.isLoading ? 'loading' : ''}
             </div> 
         )
     }
@@ -28,7 +29,8 @@ class Sins extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        sins: state.sins
+        sins: state.sins,
+        isLoading: state.loading
     }
 }
 
