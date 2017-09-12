@@ -22,3 +22,6 @@ ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 )
+window.addEventListener('click', function(e){
+    console.log(store.getState())
+})

@@ -1,21 +1,20 @@
 import api from '../api/';
 
-export const loadSins = (sins, isLoading) => {
+export const loadSins = (sins) => {
     return dispatch =>{
         dispatch({
-            type: 'LOAD_SINS_START',
-            isLoading
+            type: 'LOAD_SINS_START'
         })
 
         api.listSins().then(
-            success => dispatch({
+            response => dispatch({
                 type: 'LOAD_SINS_SUCCESS',
-                sins,
-                isLoading
-            }),
+                payload: response
+            })
+        )
+        .catch(
             error => dispatch({
-                type: 'LOAD_SINS_ERROR',
-                isLoading
+                type: 'LOAD_SINS_ERROR'
             })
         )
     }

@@ -16,12 +16,11 @@ class Sins extends React.Component{
                     <ul>
                         {this.props.sins.map((item)=>{
                             return (
-                                <li>{item}</li>
+                                <li key={item._id}>{item.name}</li>
                             )
                         })}
                     </ul>
                     : ''}
-                    <button onClick={console.log(this.props)}>click</button>
             </div> 
         )
     }
