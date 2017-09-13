@@ -1,6 +1,6 @@
 import api from '../api/';
 
-export const loadSins = (sins) => {
+export const loadSins = () => {
     return dispatch =>{
         dispatch({
             type: 'LOAD_SINS_START'
@@ -21,5 +21,13 @@ export const loadSins = (sins) => {
                 type: 'LOAD_SINS_END'
             })
         )
+    }
+}
+
+export const addSins = () =>{
+    return dispatch =>{
+        dispatch({
+            type: 'ADD_SINS'
+        })
     }
 }
