@@ -8,7 +8,7 @@ const sins = (state = [], action) => {
         return state;
         
         case 'ADD_SINS':
-        console.log('add')
+        console.log(action)
         return state 
 
         default:

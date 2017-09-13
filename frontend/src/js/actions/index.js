@@ -24,10 +24,15 @@ export const loadSins = () => {
     }
 }
 
-export const addSins = () =>{
+export const addSins = (name, category, circle) =>{
     return dispatch =>{
         dispatch({
-            type: 'ADD_SINS'
+            type: 'ADD_SINS',
+            payload: {
+                name,
+                category,
+                circle
+            }
         })
     }
 }

@@ -7,30 +7,53 @@ import { infernoData } from '../localData/data';
 
 
 class AddSins extends React.Component{
+    constructor(props) {
+        super(props);
+        this.addSins = this.addSins.bind(this);
+        this.form = {};
+    }
+
+    addSins(event){
+        event.preventDefault();
+        let name = this.form.input.value;
+        let category = this.form.select.selectedOptions[0].text;
+        let circle = this.form.select.value;
+        this.props.addSins(name, category, circle)
+    }
         
     render(){
-        return (<div className="add-sins">
+        return (<form className="add-sins"
+                     onSubmit={this.addSins}>
                     <div className="add-sins__group">
                         <div className="add-sins__title">
                             What have you done wrong?
                         </div>
                         <input className="add-sins__input"
-                            placeholder="For example 'lied'" />
+                            placeholder="For example 'lied'"
+                            ref={(input) => this.form.input = input} />
                     </div>
                     <div className="add-sins__group">
                         <div className="add-sins__title">
                             What kind of sin have you done?
                         </div>
-                        <select name="categories">
-                            {infernoData.map((item)=><option key={item.circle}>{item.name}</option>)}
+                        <select name="categories"
+                                ref={(select) => this.form.select = select}>
+                            {infernoData.map((item)=>{
+                                return ( 
+                                    <option key={item.circle}
+                                            value={item.circle}>
+                                        {item.name}
+                                    </option>
+                                )}
+                            )}
                         </select>
                     </div>
                     <div className="add-sins__group">
-                        <button className="add-sins__submit" onClick={this.props.addSins()}>
+                        <button className="add-sins__submit">
                             OK
                         </button>
                     </div>
-                </div>
+                </form>
         )
     }
 } 
@@ -44,8 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addSins: () => {
-            dispatch(addSins())
+        addSins: (name, category, circle) => {
+            dispatch(addSins(name, category, circle))
         }
     }
 }

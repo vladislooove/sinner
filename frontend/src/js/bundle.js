@@ -8163,10 +8163,15 @@ var loadSins = exports.loadSins = function loadSins() {
     };
 };
 
-var addSins = exports.addSins = function addSins() {
+var addSins = exports.addSins = function addSins(name, category, circle) {
     return function (dispatch) {
         dispatch({
-            type: 'ADD_SINS'
+            type: 'ADD_SINS',
+            payload: {
+                name: name,
+                category: category,
+                circle: circle
+            }
         });
     };
 };
@@ -14004,18 +14009,34 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var AddSins = function (_React$Component) {
     _inherits(AddSins, _React$Component);
 
-    function AddSins() {
+    function AddSins(props) {
         _classCallCheck(this, AddSins);
 
-        return _possibleConstructorReturn(this, (AddSins.__proto__ || Object.getPrototypeOf(AddSins)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (AddSins.__proto__ || Object.getPrototypeOf(AddSins)).call(this, props));
+
+        _this.addSins = _this.addSins.bind(_this);
+        _this.form = {};
+        return _this;
     }
 
     _createClass(AddSins, [{
+        key: 'addSins',
+        value: function addSins(event) {
+            event.preventDefault();
+            var name = this.form.input.value;
+            var category = this.form.select.selectedOptions[0].text;
+            var circle = this.form.select.value;
+            this.props.addSins(name, category, circle);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
-                'div',
-                { className: 'add-sins' },
+                'form',
+                { className: 'add-sins',
+                    onSubmit: this.addSins },
                 _react2.default.createElement(
                     'div',
                     { className: 'add-sins__group' },
@@ -14025,7 +14046,10 @@ var AddSins = function (_React$Component) {
                         'What have you done wrong?'
                     ),
                     _react2.default.createElement('input', { className: 'add-sins__input',
-                        placeholder: 'For example \'lied\'' })
+                        placeholder: 'For example \'lied\'',
+                        ref: function ref(input) {
+                            return _this2.form.input = input;
+                        } })
                 ),
                 _react2.default.createElement(
                     'div',
@@ -14037,11 +14061,15 @@ var AddSins = function (_React$Component) {
                     ),
                     _react2.default.createElement(
                         'select',
-                        { name: 'categories' },
+                        { name: 'categories',
+                            ref: function ref(select) {
+                                return _this2.form.select = select;
+                            } },
                         _data.infernoData.map(function (item) {
                             return _react2.default.createElement(
                                 'option',
-                                { key: item.circle },
+                                { key: item.circle,
+                                    value: item.circle },
                                 item.name
                             );
                         })
@@ -14052,7 +14080,7 @@ var AddSins = function (_React$Component) {
                     { className: 'add-sins__group' },
                     _react2.default.createElement(
                         'button',
-                        { className: 'add-sins__submit', onClick: this.props.addSins() },
+                        { className: 'add-sins__submit' },
                         'OK'
                     )
                 )
@@ -14072,8 +14100,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        addSins: function addSins() {
-            dispatch((0, _actions.addSins)());
+        addSins: function addSins(name, category, circle) {
+            dispatch((0, _actions.addSins)(name, category, circle));
         }
     };
 };
@@ -14307,7 +14335,7 @@ var sins = function sins() {
             return state;
 
         case 'ADD_SINS':
-            console.log('add');
+            console.log(action);
             return state;
 
         default:
@@ -30009,11 +30037,11 @@ var infernoData = exports.infernoData = [{
     name: 'Лимб',
     description: 'Первый круг ада называется Лимб. Стражем его является Харон, который перевозит души усопших через реку Стикс. В первом круге ада мучения испытывают младенцы, которых не крестили, и добродетельные нехристиане. Они обречены на вечное страдание безмолвной скорбью.'
 }, {
-    cir1le: 2,
+    circle: 2,
     name: 'Похоть',
     description: 'Второй круг ада охраняет Минос — несговорчивый судья проклятых. Страстных любовников и прелюбодеев в этом круге ада наказывают кручением и истязанием бурей.'
 }, {
-    cir1le: 3,
+    circle: 3,
     name: 'Чревоугодие',
     description: 'Цербер — страж третьего круга, в котором обитают чревоугодники, обжоры и гурманы. Все они наказаны гниением и разложением под палящим солнцем и проливным дождём.'
 }, {
@@ -30021,11 +30049,11 @@ var infernoData = exports.infernoData = [{
     name: 'Скупость',
     description: 'Плутос властвует в четвёртом круге, куда попадают скупцы, жадины и расточительные личности, неспособные совершать разумные траты. Наказание им — вечный спор при столкновении друг с другом.'
 }, {
-    cir1le: 5,
+    circle: 5,
     name: 'Стигийское болото',
     description: 'Пятый круг представляет мрачное и угрюмое место, охраняемое сыном бога войны Ареса — Флегием. Чтобы попасть на пятый круг ада, нужно быть очень гневным, ленивым или унылым. Тогда наказанием будет вечная драка на болоте Стикс.'
 }, {
-    cir1le: 6,
+    circle: 6,
     name: 'Стены города Дита',
     description: 'Шестой круг — это Стены города Дита, охраняемого фуриями — сварливыми, жестокими и очень злыми женщинами. Глумятся они над еретиками и лжеучителями, наказание которым — вечное существование в виде призраков в раскалённых могилах.'
 }, {
@@ -30037,7 +30065,7 @@ var infernoData = exports.infernoData = [{
     name: 'Злопазухи, или Злые Щели',
     description: 'Стражем является Герион — великан с шестью руками, шестью ногами и крыльями. В Злых щелях несут свою нелёгкую судьбу обманщики.'
 }, {
-    cir1le: 9,
+    circle: 9,
     name: 'Ледяное озеро Коцит',
     description: 'Девятый круг ада — это Ледяное озеро Коцит. Этот круг охраняют суровые стражи-гиганты по имени Эфиальт, сын Геи и Посейдона — Антей, полубык, полузмея — Бриарей и Люцифер — стражник дороги к чистилищу. Этот круг имеет четыре пояса — Пояс Каина, Пояс Антенора, Пояс Толомея, Пояс Джудекка. В этом круге томятся Иуда, Брут и Кассий. Кроме них, также попасть в этот круг обречены предатели — родины, родных людей, близких, друзей. Все они вмёрзли в лёд по шею и испытывают вечные муки холодом.'
 }];
