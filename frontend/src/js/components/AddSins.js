@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { addSins } from '../actions/'
+import { addSins } from '../actions/';
+
+import { infernoData } from '../localData/data';
 
 
 class AddSins extends React.Component{
-    
+        
     render(){
         return (<div className="add-sins">
                     <div className="add-sins__group">
@@ -20,7 +22,7 @@ class AddSins extends React.Component{
                             What kind of sin have you done?
                         </div>
                         <select name="categories">
-                            
+                            {infernoData.map((item)=><option key={item.circle}>{item.name}</option>)}
                         </select>
                     </div>
                     <div className="add-sins__group">

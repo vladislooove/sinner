@@ -1,4 +1,4 @@
-export const infernoData = [
+export var infernoData = [
     {
         circle: 1,
         name: 'Лимб',
