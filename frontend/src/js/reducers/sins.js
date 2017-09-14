@@ -7,9 +7,15 @@ const sins = (state = [], action) => {
         case 'LOAD_SINS_ERROR':
         return state;
         
-        case 'ADD_SINS':
-        console.log(action)
-        return state 
+        case 'ADD_SINS_SUCCES':
+        console.log('success')
+        return [...state,
+            {
+                name: action.payload.name,
+                category: action.payload.category,
+                circle: action.payload.circle
+            } 
+        ]
 
         default:
         return state

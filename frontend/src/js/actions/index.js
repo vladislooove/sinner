@@ -27,12 +27,20 @@ export const loadSins = () => {
 export const addSins = (name, category, circle) =>{
     return dispatch =>{
         dispatch({
-            type: 'ADD_SINS',
-            payload: {
-                name,
-                category,
-                circle
-            }
+            type: 'ADD_SINS_START'
         })
+
+        api.addSins({name, category, circle}).then(
+            response => dispatch({
+                type: 'ADD_SINS_SUCCESS'
+            })
+        )
+        .catch(
+            error => dispatch({
+                type: 'ADD_SINS_ERROR'
+            },{
+                type: 'ADD_SINS_END'
+            })
+        )
     }
 }

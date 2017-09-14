@@ -6,6 +6,14 @@ const loading = (state = false, action) => {
 
         case 'LOAD_SINS_END':
         return false;
+
+        case 'ADD_SINS_START':
+        console.log('start')
+        return true;
+
+        case 'ADD_SINS_END':
+        console.log('end')
+        return false;
     
     default:
         return false;
