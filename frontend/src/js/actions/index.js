@@ -46,3 +46,22 @@ export const addSins = (name, category, circle) =>{
         )
     }
 }
+
+export const deleteSins = (id) => {
+    return dispatch =>{
+        dispatch({
+            type: 'DELETE_SINS_START'
+        })
+
+        api.deleteSins(id).then(
+            response => dispatch({
+                type: 'DELETE_SINS_END'
+            },{
+                type: 'DELETE_SINS_SUCCESS'
+            })
+            .catch(
+                error => console.log(error)
+            )
+        )
+    }
+}

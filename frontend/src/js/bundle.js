@@ -8132,7 +8132,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.addSins = exports.loadSins = undefined;
+exports.deleteSins = exports.addSins = exports.loadSins = undefined;
 
 var _api = __webpack_require__(73);
 
@@ -8180,6 +8180,24 @@ var addSins = exports.addSins = function addSins(name, category, circle) {
                 type: 'ADD_SINS_ERROR'
             }, {
                 type: 'ADD_SINS_END'
+            });
+        });
+    };
+};
+
+var deleteSins = exports.deleteSins = function deleteSins(id) {
+    return function (dispatch) {
+        dispatch({
+            type: 'DELETE_SINS_START'
+        });
+
+        _api2.default.deleteSins(id).then(function (response) {
+            return dispatch({
+                type: 'DELETE_SINS_END'
+            }, {
+                type: 'DELETE_SINS_SUCCESS'
+            }).catch(function (error) {
+                return console.log(error);
             });
         });
     };
@@ -14192,8 +14210,15 @@ var Sins = function (_React$Component) {
             this.props.loadSins();
         }
     }, {
+        key: 'deleteSin',
+        value: function deleteSin(item) {
+            this.props.deleteSins(item._id);
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this2 = this;
+
             return _react2.default.createElement(
                 'div',
                 null,
@@ -14211,7 +14236,12 @@ var Sins = function (_React$Component) {
                             ', ',
                             item.createdAt,
                             ', ',
-                            item.category
+                            item.category,
+                            _react2.default.createElement(
+                                'button',
+                                { onClick: _this2.deleteSin.bind(_this2, item) },
+                                'delete'
+                            )
                         );
                     })
                 ) : '',
@@ -14234,6 +14264,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
         loadSins: function loadSins() {
             dispatch((0, _actions.loadSins)());
+        },
+        deleteSins: function deleteSins(id) {
+            dispatch((0, _actions.deleteSins)(id));
         }
     };
 };
