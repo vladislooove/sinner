@@ -7,8 +7,7 @@ const sins = (state = [], action) => {
         case 'LOAD_SINS_ERROR':
         return state;
         
-        case 'ADD_SINS_SUCCES':
-        console.log('success')
+        case 'ADD_SINS_SUCCESS':
         return [...state,
             {
                 name: action.payload.name,

@@ -8,11 +8,9 @@ const loading = (state = false, action) => {
         return false;
 
         case 'ADD_SINS_START':
-        console.log('start')
         return true;
 
         case 'ADD_SINS_END':
-        console.log('end')
         return false;
     
     default:

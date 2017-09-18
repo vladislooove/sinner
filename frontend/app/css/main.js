@@ -8166,12 +8166,19 @@ var loadSins = exports.loadSins = function loadSins() {
 var addSins = exports.addSins = function addSins(name, category, circle) {
     return function (dispatch) {
         dispatch({
-            type: 'ADD_SINS',
-            payload: {
-                name: name,
-                category: category,
-                circle: circle
-            }
+            type: 'ADD_SINS_START'
+        });
+
+        _api2.default.addSins({ name: name, category: category, circle: circle }).then(function (response) {
+            return dispatch({
+                type: 'ADD_SINS_SUCCESS'
+            });
+        }).catch(function (error) {
+            return dispatch({
+                type: 'ADD_SINS_ERROR'
+            }, {
+                type: 'ADD_SINS_END'
+            });
         });
     };
 };
@@ -14352,6 +14359,14 @@ var loading = function loading() {
         case 'LOAD_SINS_END':
             return false;
 
+        case 'ADD_SINS_START':
+            console.log('start');
+            return true;
+
+        case 'ADD_SINS_END':
+            console.log('end');
+            return false;
+
         default:
             return false;
 
@@ -14371,6 +14386,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 var sins = function sins() {
     var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
     var action = arguments[1];
@@ -14382,9 +14399,13 @@ var sins = function sins() {
         case 'LOAD_SINS_ERROR':
             return state;
 
-        case 'ADD_SINS':
-            console.log(action);
-            return state;
+        case 'ADD_SINS_SUCCES':
+            console.log('success');
+            return [].concat(_toConsumableArray(state), [{
+                name: action.payload.name,
+                category: action.payload.category,
+                circle: action.payload.circle
+            }]);
 
         default:
             return state;

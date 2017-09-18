@@ -32,6 +32,8 @@ export const addSins = (name, category, circle) =>{
 
         api.addSins({name, category, circle}).then(
             response => dispatch({
+                type: 'ADD_SINS_END'
+            },{
                 type: 'ADD_SINS_SUCCESS'
             })
         )

@@ -8171,6 +8171,8 @@ var addSins = exports.addSins = function addSins(name, category, circle) {
 
         _api2.default.addSins({ name: name, category: category, circle: circle }).then(function (response) {
             return dispatch({
+                type: 'ADD_SINS_END'
+            }, {
                 type: 'ADD_SINS_SUCCESS'
             });
         }).catch(function (error) {
@@ -14360,11 +14362,9 @@ var loading = function loading() {
             return false;
 
         case 'ADD_SINS_START':
-            console.log('start');
             return true;
 
         case 'ADD_SINS_END':
-            console.log('end');
             return false;
 
         default:
@@ -14399,8 +14399,7 @@ var sins = function sins() {
         case 'LOAD_SINS_ERROR':
             return state;
 
-        case 'ADD_SINS_SUCCES':
-            console.log('success');
+        case 'ADD_SINS_SUCCESS':
             return [].concat(_toConsumableArray(state), [{
                 name: action.payload.name,
                 category: action.payload.category,

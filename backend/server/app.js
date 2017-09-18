@@ -25,6 +25,7 @@ app.delete('/sins:id', (req,res)=>{
     db.deleteSins(req.params.id).then(data=> res.send(data));
 });
 
+
 const server = app.listen(serverPort, () => {
     console.log('Server is running on ' + serverPort);
 })
