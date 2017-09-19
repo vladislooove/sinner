@@ -15,7 +15,9 @@ const sins = (state = [], action) => {
                 circle: action.payload.circle
             } 
         ]
-
+        
+        case 'DELETE_SINS_SUCCESS':
+        return state.filter((item) =>  item._id != action.payload )
 
         default:
         return state

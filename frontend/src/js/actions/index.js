@@ -55,13 +55,18 @@ export const deleteSins = (id) => {
 
         api.deleteSins(id).then(
             response => dispatch({
-                type: 'DELETE_SINS_END'
+                type: 'DELETE_SINS_SUCCESS',
+                payload: id
             },{
-                type: 'DELETE_SINS_SUCCESS'
+                type: 'DELETE_SINS_END'
             })
-            .catch(
-                error => console.log(error)
-            )
+        )
+        .catch(
+            error => dispatch({
+                type: 'DELETE_SINS_ERROR'
+            },{
+                type: 'DELETE_SINS_ERROR'
+            })
         )
     }
 }

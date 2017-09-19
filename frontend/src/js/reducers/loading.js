@@ -12,6 +12,12 @@ const loading = (state = false, action) => {
 
         case 'ADD_SINS_END':
         return false;
+
+        case 'DELETE_SINS_START':
+        return true;
+
+        case 'DELETE_SINS_END':
+        return false;
     
     default:
         return false;

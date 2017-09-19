@@ -8193,11 +8193,16 @@ var deleteSins = exports.deleteSins = function deleteSins(id) {
 
         _api2.default.deleteSins(id).then(function (response) {
             return dispatch({
-                type: 'DELETE_SINS_END'
+                type: 'DELETE_SINS_SUCCESS',
+                payload: id
             }, {
-                type: 'DELETE_SINS_SUCCESS'
-            }).catch(function (error) {
-                return console.log(error);
+                type: 'DELETE_SINS_END'
+            });
+        }).catch(function (error) {
+            return dispatch({
+                type: 'DELETE_SINS_ERROR'
+            }, {
+                type: 'DELETE_SINS_ERROR'
             });
         });
     };
@@ -14400,6 +14405,12 @@ var loading = function loading() {
         case 'ADD_SINS_END':
             return false;
 
+        case 'DELETE_SINS_START':
+            return true;
+
+        case 'DELETE_SINS_END':
+            return false;
+
         default:
             return false;
 
@@ -14438,6 +14449,11 @@ var sins = function sins() {
                 category: action.payload.category,
                 circle: action.payload.circle
             }]);
+
+        case 'DELETE_SINS_SUCCESS':
+            return state.filter(function (item) {
+                return item._id != action.payload;
+            });
 
         default:
             return state;

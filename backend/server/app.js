@@ -21,7 +21,7 @@ app.post('/sins', (req,res)=>{
     db.createSins(req.body).then(data=> res.send(data));
 });
 
-app.delete('/sins:id', (req,res)=>{
+app.delete('/sins/:id', (req,res)=>{
     db.deleteSins(req.params.id).then(data=> res.send(data));
 });
 
