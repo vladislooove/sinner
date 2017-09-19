@@ -28,3 +28,8 @@ export function createSins(data){
 export function deleteSins(id){
     return Sins.findById(id).remove();
 }
+
+export function listTodaySins(){
+    var todayDate = new Date();
+    return todayDate;
+}
