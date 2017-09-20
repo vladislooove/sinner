@@ -8132,7 +8132,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.deleteSins = exports.addSins = exports.loadSins = undefined;
+exports.deleteSins = exports.addSins = exports.loadTodaySins = exports.loadSins = undefined;
 
 var _api = __webpack_require__(73);
 
@@ -8147,6 +8147,29 @@ var loadSins = exports.loadSins = function loadSins() {
         });
 
         _api2.default.listSins().then(function (response) {
+            return dispatch({
+                type: 'LOAD_SINS_SUCCESS',
+                payload: response
+            }, {
+                type: 'LOAD_SINS_END'
+            });
+        }).catch(function (error) {
+            return dispatch({
+                type: 'LOAD_SINS_ERROR'
+            }, {
+                type: 'LOAD_SINS_END'
+            });
+        });
+    };
+};
+
+var loadTodaySins = exports.loadTodaySins = function loadTodaySins() {
+    return function (dispatch) {
+        dispatch({
+            type: 'LOAD_SINS_START'
+        });
+
+        _api2.default.listTodaySins().then(function (response) {
             return dispatch({
                 type: 'LOAD_SINS_SUCCESS',
                 payload: response
@@ -8232,6 +8255,9 @@ var apiPrefix = 'http://localhost:8080';
 exports.default = {
     listSins: function listSins() {
         return _axios2.default.get(apiPrefix + '/sins');
+    },
+    listTodaySins: function listTodaySins() {
+        return _axios2.default.get(apiPrefix + '/sins/today');
     },
     addSins: function addSins(data) {
         return _axios2.default.post(apiPrefix + '/sins', data);
@@ -13108,6 +13134,10 @@ var _sins = __webpack_require__(146);
 
 var _sins2 = _interopRequireDefault(_sins);
 
+var _todaySins = __webpack_require__(299);
+
+var _todaySins2 = _interopRequireDefault(_todaySins);
+
 var _loading = __webpack_require__(145);
 
 var _loading2 = _interopRequireDefault(_loading);
@@ -13116,6 +13146,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var combinedStore = (0, _redux.combineReducers)({
     sins: _sins2.default,
+    todaySins: _todaySins2.default,
     loading: _loading2.default
 });
 
@@ -14213,6 +14244,7 @@ var Sins = function (_React$Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.props.loadSins();
+            this.props.loadTodaySins();
         }
     }, {
         key: 'deleteSin',
@@ -14250,7 +14282,25 @@ var Sins = function (_React$Component) {
                         );
                     })
                 ) : '',
-                this.props.isLoading ? 'loading' : ''
+                this.props.isLoading ? 'loading' : '',
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    ' today: '
+                ),
+                this.props.todaySins.map(function (item) {
+                    return _react2.default.createElement(
+                        'p',
+                        { key: item._id },
+                        item.name,
+                        ', ',
+                        item.circle,
+                        ', ',
+                        item.createdAt,
+                        ', ',
+                        item.category
+                    );
+                })
             );
         }
     }]);
@@ -14261,6 +14311,7 @@ var Sins = function (_React$Component) {
 var mapStateToProps = function mapStateToProps(state) {
     return {
         sins: state.sins,
+        todaySins: state.todaySins,
         isLoading: state.loading
     };
 };
@@ -14269,6 +14320,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
         loadSins: function loadSins() {
             dispatch((0, _actions.loadSins)());
+        },
+        loadTodaySins: function loadTodaySins() {
+            dispatch((0, _actions.loadTodaySins)());
         },
         deleteSins: function deleteSins(id) {
             dispatch((0, _actions.deleteSins)(id));
@@ -30138,6 +30192,34 @@ module.exports = function(module) {
 	return module;
 };
 
+
+/***/ }),
+/* 299 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+var todaySins = function todaySins() {
+    var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+    var action = arguments[1];
+
+    switch (action.type) {
+        case 'LOAD_SINS_SUCCESS':
+            return action.payload.data;
+
+        case 'LOAD_SINS_ERROR':
+            return state;
+
+        default:
+            return state;
+    }
+};
+
+exports.default = todaySins;
 
 /***/ })
 /******/ ]);

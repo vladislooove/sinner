@@ -9,6 +9,10 @@ export default {
         return axios.get(apiPrefix + '/sins');
     },
 
+    listTodaySins(){
+    	return axios.get(apiPrefix + '/sins/today');
+    },
+
     addSins(data){
         return axios.post(apiPrefix + '/sins', data);
     },
