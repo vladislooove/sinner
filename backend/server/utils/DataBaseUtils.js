@@ -37,7 +37,7 @@ export function listTodaySins(){
     let tomorrowDate = new Date();
     tomorrowDate.setDate(tomorrowDate.getDate() + 1);
     tomorrowDate.setHours(0);
-
+    
     return Sins.find(
         { 
             createdAt: {
