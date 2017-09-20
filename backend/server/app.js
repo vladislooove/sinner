@@ -18,7 +18,7 @@ app.get('/sins', (req,res)=>{
 });
 
 app.get('/sins/today', (req,res)=>{
-    res.send(db.listTodaySins())
+    db.listTodaySins().then(data => res.send(data));
 })
 
 app.post('/sins', (req,res)=>{

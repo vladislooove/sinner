@@ -30,6 +30,20 @@ export function deleteSins(id){
 }
 
 export function listTodaySins(){
-    var todayDate = new Date();
-    return todayDate;
+    let todayDate = new Date();
+    todayDate
+        .setHours(0);
+
+    let tomorrowDate = new Date();
+    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
+    tomorrowDate.setHours(0);
+
+    return Sins.find(
+        { 
+            createdAt: {
+                $gt: todayDate,
+                $lt: tomorrowDate
+            }
+        }
+    );
 }
