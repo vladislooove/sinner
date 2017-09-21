@@ -2,24 +2,24 @@
 
 To run app you need Nodejs, npm, mongodb, babel-cli to be installed.
 
-- ** Clone this repo **
-- ** To install all dependencies run: **
+- Clone this repo
+- To install all dependencies run:
 ```sh
 cd backend
 npm i
 cd ../frontend
 npm i
 ```
-- ** To run server: **
+- To run server:
 ```sh
 cd backend
 sudo mongod
 babel-node server/app.js
 ```
-- ** To run client-side local server **
+- To run client-side local server
 ```sh
 cd frontend
 gulp
 ```
-- ** ?????? **
-- ** PROFIT **
+- ??????
+- PROFIT
