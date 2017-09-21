@@ -18,7 +18,8 @@ class AddSins extends React.Component{
         let name = this.form.input.value;
         let category = this.form.select.selectedOptions[0].text;
         let circle = this.form.select.value;
-        this.props.addSins(name, category, circle)
+        let additional = this.form.textarea.value;
+        this.props.addSins(name, category, circle, additional)
     }
         
     render(){
@@ -31,6 +32,7 @@ class AddSins extends React.Component{
                         <input className="add-sins__input"
                             placeholder="For example 'lied'"
                             ref={(input) => this.form.input = input} />
+                        <textarea ref={(textarea) => this.form.textarea = textarea} />
                     </div>
                     <div className="add-sins__group">
                         <div className="add-sins__title">
@@ -67,8 +69,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addSins: (name, category, circle) => {
-            dispatch(addSins(name, category, circle))
+        addSins: (name, category, circle, additional) => {
+            dispatch(addSins(name, category, circle, additional))
         }
     }
 }

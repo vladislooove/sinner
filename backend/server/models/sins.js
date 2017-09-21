@@ -6,6 +6,7 @@ const SinsSchema = new Schema({
     name: { type: String, required: true },
     category: { type: String, required: true },
     circle: { type: Number, required: true },
+    additional: { type: String, required: false },
     createdAt: { type: Date }
 });
 

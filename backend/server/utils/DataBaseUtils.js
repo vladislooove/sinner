@@ -19,6 +19,7 @@ export function createSins(data){
         name: data.name,
         category: data.category,
         circle: data.circle,
+        additional: data.additional,
         createdAt: new Date
     })
 
@@ -32,7 +33,7 @@ export function deleteSins(id){
 export function listTodaySins(){
     let todayDate = new Date();
     todayDate
-        .setHours(3);
+        .setHours(0);
     todayDate
         .setMinutes(0);
 
@@ -40,7 +41,7 @@ export function listTodaySins(){
     tomorrowDate
         .setDate(tomorrowDate.getDate() + 1);
     tomorrowDate
-        .setHours(3);
+        .setHours(0);
     tomorrowDate
         .setMinutes(0);
     

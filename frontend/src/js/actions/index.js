@@ -49,13 +49,13 @@ export const loadTodaySins = () => {
 }
 
 
-export const addSins = (name, category, circle) =>{
+export const addSins = (name, category, circle, additional) =>{
     return dispatch =>{
         dispatch({
             type: 'ADD_SINS_START'
         })
 
-        api.addSins({name, category, circle}).then(
+        api.addSins({name, category, circle, additional}).then(
             response => dispatch({
                 type: 'ADD_SINS_END'
             },{
