@@ -2,12 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { loadSins, loadTodaySins, deleteSins } from '../actions/'
-import api from '../api/'
 
 class Sins extends React.Component{
     componentDidMount(){
         this.props.loadSins()
-        this.props.loadTodaySins()
     }
     deleteSin(item){
         this.props.deleteSins(item._id);
@@ -28,11 +26,6 @@ class Sins extends React.Component{
                     </ul>
                     : ''}
                 {this.props.isLoading ? 'loading' : ''}
-                <h1> today: </h1>
-                {this.props.todaySins.map((item)=>{
-                    return (<p key={item._id}>{item.name}, {item.circle}, {item.createdAt}, {item.category}</p>)
-                })}
-                
             </div> 
         )
     }
@@ -41,7 +34,6 @@ class Sins extends React.Component{
 const mapStateToProps = state => {
     return {
         sins: state.sins,
-        todaySins: state.todaySins,
         isLoading: state.loading
     }
 }
@@ -50,9 +42,6 @@ const mapDispatchToProps = dispatch => {
     return {
         loadSins: () => {
             dispatch(loadSins())
-        },
-        loadTodaySins: () =>{
-            dispatch(loadTodaySins())
         },
         deleteSins: (id) => {
             dispatch(deleteSins(id))

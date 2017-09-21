@@ -32,17 +32,23 @@ export function deleteSins(id){
 export function listTodaySins(){
     let todayDate = new Date();
     todayDate
-        .setHours(0);
+        .setHours(3);
+    todayDate
+        .setMinutes(0);
 
     let tomorrowDate = new Date();
-    tomorrowDate.setDate(tomorrowDate.getDate() + 1);
-    tomorrowDate.setHours(0);
+    tomorrowDate
+        .setDate(tomorrowDate.getDate() + 1);
+    tomorrowDate
+        .setHours(3);
+    tomorrowDate
+        .setMinutes(0);
     
     return Sins.find(
         { 
             createdAt: {
-                $gt: todayDate,
-                $lt: tomorrowDate
+                $gte: todayDate,
+                $lte: tomorrowDate
             }
         }
     );

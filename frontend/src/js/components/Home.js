@@ -1,7 +1,42 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-const Home = () => (
-    <div>Home</div>
-)
+import { loadTodaySins } from '../actions/'
 
-export default Home;
+
+class Home extends React.Component{
+    componentDidMount(){
+        this.props.loadTodaySins()
+    }
+    render(){
+        return (
+            <div> 
+                HOME 
+                <h1> today: </h1>
+                {this.props.todaySins.map((item)=>{
+                    return (<p key={item._id}>{item.name}, {item.circle}, {item.createdAt}, {item.category}</p>)
+                })}
+            </div>
+        )
+    }
+}
+
+const mapStateToProps = state => {
+    return {
+        todaySins: state.todaySins,
+        isLoading: state.loading
+    }
+}
+
+const mapDispatchToProps = dispatch => {
+    return {
+        loadTodaySins: () =>{
+            dispatch(loadTodaySins())
+        }
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Home);
