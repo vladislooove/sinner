@@ -3,6 +3,7 @@ import { Switch, Route, Link } from 'react-router-dom';
 
 import Home from './Home';
 import Sins from './Sins';
+import SinsPage from './SinsPage';
 import AddSins from './AddSins';
 
 const App = () => (
@@ -16,7 +17,8 @@ const App = () => (
         <main>
             <Switch>
                 <Route exact path='/' component={Home}/>
-                <Route path='/sins' component={Sins}/>
+                <Route exact path='/sins' component={Sins}/>
+                <Route path='/sins/:id' component={SinsPage}/>
                 <Route path='/addsins' component={AddSins} />
             </Switch>
         </main>
