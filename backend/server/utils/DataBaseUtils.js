@@ -53,3 +53,8 @@ export function listTodaySins(){
         }
     );
 }
+
+export function getSin(id){
+    console.log(Sins.findById(id))
+    return Sins.findById(id);
+}

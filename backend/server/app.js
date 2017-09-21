@@ -21,6 +21,10 @@ app.get('/sins/today', (req,res)=>{
     db.listTodaySins().then(data => res.send(data));
 })
 
+app.get('/sins/:id', (req, res)=>{
+    db.getSin(req.params.id).then(data => res.send(data));
+})
+
 app.post('/sins', (req,res)=>{
     db.createSins(req.body).then(data=> res.send(data));
 });
