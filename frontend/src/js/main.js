@@ -10,7 +10,7 @@ import thunk from 'redux-thunk'
 import combinedStore from './reducers/'
 
 //components
-import App from './components/App'
+import App from './containers/App'
 
 let store = createStore(combinedStore, applyMiddleware(thunk));
 

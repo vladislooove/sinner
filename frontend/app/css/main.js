@@ -5650,13 +5650,13 @@ var loadTodaySins = exports.loadTodaySins = function loadTodaySins() {
     };
 };
 
-var addSins = exports.addSins = function addSins(name, category, circle) {
+var addSins = exports.addSins = function addSins(name, category, circle, additional) {
     return function (dispatch) {
         dispatch({
             type: 'ADD_SINS_START'
         });
 
-        _api2.default.addSins({ name: name, category: category, circle: circle }).then(function (response) {
+        _api2.default.addSins({ name: name, category: category, circle: circle, additional: additional }).then(function (response) {
             return dispatch({
                 type: 'ADD_SINS_END'
             }, {
@@ -14580,7 +14580,8 @@ var AddSins = function (_React$Component) {
             var name = this.form.input.value;
             var category = this.form.select.selectedOptions[0].text;
             var circle = this.form.select.value;
-            this.props.addSins(name, category, circle);
+            var additional = this.form.textarea.value;
+            this.props.addSins(name, category, circle, additional);
         }
     }, {
         key: 'render',
@@ -14603,6 +14604,9 @@ var AddSins = function (_React$Component) {
                         placeholder: 'For example \'lied\'',
                         ref: function ref(input) {
                             return _this2.form.input = input;
+                        } }),
+                    _react2.default.createElement('textarea', { ref: function ref(textarea) {
+                            return _this2.form.textarea = textarea;
                         } })
                 ),
                 _react2.default.createElement(
@@ -14654,8 +14658,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
     return {
-        addSins: function addSins(name, category, circle) {
-            dispatch((0, _actions.addSins)(name, category, circle));
+        addSins: function addSins(name, category, circle, additional) {
+            dispatch((0, _actions.addSins)(name, category, circle, additional));
         }
     };
 };

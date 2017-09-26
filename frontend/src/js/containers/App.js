@@ -1,19 +1,18 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
 
+//containers
 import Home from './Home';
 import Sins from './Sins';
 import SinsPage from './SinsPage';
 import AddSins from './AddSins';
 
+//components
+import Header from '../components/Header';
+
 const App = () => (
     <div className="wrapper">
-        <header className="main-header">
-            header and nav
-            <Link to='/'>Home</Link>
-            <Link to='/sins'>Sins</Link>
-            <Link to='/addsins'>Add Sins</Link>
-        </header>
+        <Header/>
         <main>
             <Switch>
                 <Route exact path='/' component={Home}/>
