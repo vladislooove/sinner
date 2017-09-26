@@ -1,0 +1,65 @@
+$header-bg = #000
+
+.main-header
+    position fixed
+    top 0
+    bottom 0
+    left 0
+    display flex
+    background-color $header-bg
+
+    &:hover,
+    &:focus
+        .main-header__nav-item
+            &-text
+                max-width 100px
+                max-height 100px
+
+        + .main
+            padding-left 100px
+
+    &__nav
+        display flex
+        flex-direction column
+        justify-content center
+
+        &-item
+            display flex
+            flex-direction column
+            align-items center
+            padding 10px
+            color #fff
+            text-decoration none
+            font-size 12px
+            text-transform uppercase
+            letter-spacing 0
+            transition color $time-short
+
+            .icon
+                fill #fff
+                transform scale(.7)
+                transition all $time-short
+
+            &:hover,
+            &:focus
+                text-decoration none
+
+            &.active
+                color $brand-primary
+
+                .icon
+                    fill $brand-primary
+                    transform scale(1)
+                
+
+        &-item-text
+            padding-top 3px
+            max-width  0
+            max-height 0
+            transition max-width $time-md, max-height $time-md
+            overflow hidden
+            white-space nowrap
+
+.main
+    padding-left 70px
+    transition padding-left $time-md

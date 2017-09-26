@@ -13,7 +13,7 @@ import Header from '../components/Header';
 const App = () => (
     <div className="wrapper">
         <Header/>
-        <main>
+        <main className="main">
             <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/sins' component={Sins}/>

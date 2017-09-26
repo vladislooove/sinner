@@ -1,0 +1,96 @@
+// Framework grid generation
+//
+// Used only by Bootstrap to generate the correct number of grid $classes given
+// any value of `$grid-columns`.
+make-grid-columns()
+  $col
+    position relative
+    flex-grow 0
+    flex-shrink 0
+    flex-basis 100%
+    max-width 100% //fix bug when sometimes column can be larger than 100% 
+    // Inner gutter via padding
+    padding-left ceil($grid-gutter-width / 2)
+    padding-right floor($grid-gutter-width / 2)
+
+  // Common styles for all sizes of grid columns, widths 1-12
+  for $index in 1..$grid-columns
+    .col-xxs-{$index}
+    .col-xs-{$index}, 
+    .col-sm-{$index}, 
+    .col-md-{$index}, 
+    .col-lg-{$index}
+      @extend $col
+
+calc-grid-column($index, $class, $type)
+  if $type == width and $index > 0
+    .col-{$class}-{$index}
+      flex-basis percentage(($index / $grid-columns))
+      max-width @flex-basis
+  else if $type == push
+    if $index == 0
+      .col-{$class}-push-0
+        left auto
+    else
+      .col-{$class}-push-{$index}
+        left percentage(($index / $grid-columns))
+  else if $type == pull
+    if $index == 0
+      .col-{$class}-pull-0
+        right auto
+    else
+      .col-{$class}-pull-{$index}
+        right percentage(($index / $grid-columns))
+  else if $type == offset
+    .col-{$class}-offset-{$index}
+      margin-left percentage(($index / $grid-columns))
+
+loop-grid-columns($grid-columns, $class, $type)
+  for $index in $grid-columns..0
+    calc-grid-column($index, $class, $type)
+
+create-helper-classes($class)
+  .start-{$class}
+    justify-content flex-start
+
+  .center-{$class}
+    justify-content center
+
+  .end-{$class}
+    justify-content flex-end
+
+  .top-{$class}
+    align-items flex-start
+
+  .stretch-{$class}
+    align-items stretch
+
+    > [class*="col-"]
+      display flex
+
+  .middle-{$class}
+    align-items center
+
+  .bottom-{$class}
+    align-items flex-end
+
+  .around-{$class}
+    justify-content space-around
+
+  .between-{$class}
+    justify-content space-between
+
+  .first-{$class}
+    order -1
+
+  .last-{$class}
+    order 1
+
+// Create grid for specific $class
+make-grid($class)
+  loop-grid-columns($grid-columns, $class, width)
+  loop-grid-columns($grid-columns, $class, pull)
+  loop-grid-columns($grid-columns, $class, push)
+  loop-grid-columns($grid-columns, $class, offset)
+  loop-grid-columns($grid-columns, $class, alignement)
+  create-helper-classes($class)

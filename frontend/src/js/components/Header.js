@@ -7,6 +7,7 @@ const Header = () => {
             <nav className="main-header__nav">                
                 <NavLink to='/' 
                          activeClassName="active"
+                         exact
                          className="main-header__nav-item">
                     <svg className="icon icon--home"> 
                         <use xlinkHref="images/svg-symbols.svg#home"></use> 
@@ -15,11 +16,12 @@ const Header = () => {
                 </NavLink>
                 <NavLink to='/sins' 
                          activeClassName="active"
-                         className="main-header__nav-item">Sins</NavLink>
+                         className="main-header__nav-item">
                     <svg className="icon icon--list"> 
                         <use xlinkHref="images/svg-symbols.svg#list"></use> 
                     </svg>
                     <span className="main-header__nav-item-text">Sins list</span>
+                </NavLink>
                 <NavLink to='/addsins' 
                          activeClassName="active"
                          className="main-header__nav-item">
