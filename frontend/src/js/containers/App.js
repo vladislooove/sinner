@@ -7,6 +7,7 @@ import Home from './Home';
 import Sins from './Sins';
 import SinsPage from './SinsPage';
 import AddSins from './AddSins';
+import Calendar from './Calendar';
 
 //components
 import Header from '../components/Header';
@@ -23,6 +24,7 @@ class App extends React.Component{
                             <Route exact path='/sins' component={Sins}/>
                             <Route path='/sins/:id' component={SinsPage}/>
                             <Route path='/addsins' component={AddSins} />
+                            <Route path='/calendar' component={Calendar} />
                         </Switch>
                         <div className={this.props.isLoading ? 'loader visible' : 'loader'}>
                             <svg className="icon icon--cross"> 
