@@ -13542,7 +13542,7 @@ var App = function App() {
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(
             'main',
-            null,
+            { className: 'main' },
             _react2.default.createElement(
                 _reactRouterDom.Switch,
                 null,
@@ -14548,6 +14548,7 @@ var Header = function Header() {
                 _reactRouterDom.NavLink,
                 { to: '/',
                     activeClassName: 'active',
+                    exact: true,
                     className: 'main-header__nav-item' },
                 _react2.default.createElement(
                     'svg',

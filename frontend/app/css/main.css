@@ -24,16 +24,20 @@
   font-weight: 900;
 }
 .icon--home {
-  width: 2.1875rem;
-  height: 2.1875rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
 }
 .icon--list {
-  width: 2.1875rem;
-  height: 2.1875rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
 }
 .icon--add {
-  width: 2.1875rem;
-  height: 2.1875rem;
+  width: 1.5625rem;
+  height: 1.5625rem;
+}
+.icon--cross {
+  width: 5rem;
+  height: 5rem;
 }
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -1531,8 +1535,8 @@ html {
 }
 body {
   line-height: 1.25;
-  color: #333;
-  background-color: #fff;
+  color: #fff;
+  background-color: #111;
 }
 input,
 button,
@@ -1567,7 +1571,7 @@ img {
 .img-thumbnail {
   padding: 0.25rem;
   line-height: 1.25;
-  background-color: #fff;
+  background-color: #111;
   border: 1px solid #ddd;
   border-radius: 0.25rem;
   -webkit-transition: all 0.2s ease-in-out;
@@ -1608,7 +1612,10 @@ hr {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  flwx-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   min-height: 100vh;
 }
 .wrapper {
@@ -1616,24 +1623,86 @@ hr {
       -ms-flex-positive: 1;
           flex-grow: 1;
 }
-.main-header {
+.loader {
   position: fixed;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: #222;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  -webkit-transition: opacity 250ms, visibility 250ms;
+  transition: opacity 250ms, visibility 250ms;
+}
+.loader .icon {
+  position: relative;
+  border-radius: 50%;
+  padding: 0.625rem;
+  fill: #fff;
+  -webkit-animation: rotate 2s infinite;
+          animation: rotate 2s infinite;
+  box-shadow: 0px 0px 0.625rem 0.125rem #fff;
+}
+.loader.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: all;
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+            transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.main-header {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  border-right: 1px solid #e22d22;
   background-color: #000;
 }
 .main-header:hover .main-header__nav-item-text,
 .main-header:focus .main-header__nav-item-text {
   max-width: 6.25rem;
   max-height: 6.25rem;
-}
-.main-header:hover + .main,
-.main-header:focus + .main {
-  padding-left: 6.25rem;
 }
 .main-header__nav {
   display: -webkit-box;
@@ -1664,15 +1733,15 @@ hr {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0;
-  -webkit-transition: color 125ms;
-  transition: color 125ms;
+  -webkit-transition: color 250ms;
+  transition: color 250ms;
 }
 .main-header__nav-item .icon {
   fill: #fff;
-  -webkit-transform: scale(0.7);
-          transform: scale(0.7);
-  -webkit-transition: all 125ms;
-  transition: all 125ms;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
 }
 .main-header__nav-item:hover,
 .main-header__nav-item:focus {
@@ -1683,20 +1752,15 @@ hr {
 }
 .main-header__nav-item.active .icon {
   fill: #e22d22;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
 }
 .main-header__nav-item-text {
   padding-top: 0.1875rem;
   max-width: 0;
   max-height: 0;
-  -webkit-transition: max-width 250ms, max-height 250ms;
-  transition: max-width 250ms, max-height 250ms;
+  -webkit-transition: max-width 500ms, max-height 500ms;
+  transition: max-width 500ms, max-height 500ms;
   overflow: hidden;
   white-space: nowrap;
-}
-.main {
-  padding-left: 4.375rem;
-  -webkit-transition: padding-left 250ms;
-  transition: padding-left 250ms;
 }

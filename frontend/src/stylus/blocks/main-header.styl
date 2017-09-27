@@ -5,7 +5,9 @@ $header-bg = #000
     top 0
     bottom 0
     left 0
+    z-index 1000
     display flex
+    border-right 1px solid $brand-primary
     background-color $header-bg
 
     &:hover,
@@ -15,8 +17,6 @@ $header-bg = #000
                 max-width 100px
                 max-height 100px
 
-        + .main
-            padding-left 100px
 
     &__nav
         display flex
@@ -33,12 +33,12 @@ $header-bg = #000
             font-size 12px
             text-transform uppercase
             letter-spacing 0
-            transition color $time-short
+            transition color $time-md
 
             .icon
                 fill #fff
-                transform scale(.7)
-                transition all $time-short
+                transform scale(1)
+                transition all $time-md
 
             &:hover,
             &:focus
@@ -49,17 +49,13 @@ $header-bg = #000
 
                 .icon
                     fill $brand-primary
-                    transform scale(1)
+                    transform scale(1.2)
                 
 
         &-item-text
             padding-top 3px
             max-width  0
             max-height 0
-            transition max-width $time-md, max-height $time-md
+            transition max-width $time-long, max-height $time-long
             overflow hidden
             white-space nowrap
-
-.main
-    padding-left 70px
-    transition padding-left $time-md

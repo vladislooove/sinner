@@ -1,7 +1,44 @@
 #root
     display flex
-    flwx-direction column
+    flex-direction column
     min-height 100vh
 
 .wrapper
     flex-grow 1
+
+.loader
+    position fixed
+    top 0
+    right 0
+    bottom 0
+    left 0
+    display flex
+    align-items center
+    justify-content center
+    background-color #222
+    opacity 0
+    visibility hidden
+    pointer-events none
+    transition opacity $time-md, visibility $time-md
+
+    .icon
+        position relative
+        border-radius 50%
+        padding 10px
+        fill #fff
+        animation rotate 2s infinite
+        box-shadow 0px 0px 10px 2px #fff
+
+    &.visible
+        opacity 1
+        visibility visible
+        pointer-events all
+        
+
+@keyframes rotate
+    0%
+        transform rotate(0deg)
+    50%
+        transform rotate(180deg)
+    100%
+        transform rotate(360deg)

@@ -24,16 +24,16 @@
   font-weight: 900;
 }
 .icon--home {
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 2.1875rem;
+  height: 2.1875rem;
 }
 .icon--list {
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 2.1875rem;
+  height: 2.1875rem;
 }
 .icon--add {
-  width: 1.875rem;
-  height: 1.875rem;
+  width: 2.1875rem;
+  height: 2.1875rem;
 }
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
 html {
@@ -1543,16 +1543,16 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #337ab7;
+  color: #e22d22;
   text-decoration: underline;
 }
 a:hover,
 a:focus {
-  color: #22527b;
+  color: #a21d15;
   text-decoration: underline;
 }
 a:active {
-  color: #1d4567;
+  color: #8c1912;
   text-decoration: underline;
 }
 figure {
@@ -1626,6 +1626,15 @@ hr {
   display: flex;
   background-color: #000;
 }
+.main-header:hover .main-header__nav-item-text,
+.main-header:focus .main-header__nav-item-text {
+  max-width: 6.25rem;
+  max-height: 6.25rem;
+}
+.main-header:hover + .main,
+.main-header:focus + .main {
+  padding-left: 6.25rem;
+}
 .main-header__nav {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1646,6 +1655,48 @@ hr {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 0.625rem;
   color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0;
+  -webkit-transition: color 125ms;
+  transition: color 125ms;
+}
+.main-header__nav-item .icon {
+  fill: #fff;
+  -webkit-transform: scale(0.7);
+          transform: scale(0.7);
+  -webkit-transition: all 125ms;
+  transition: all 125ms;
+}
+.main-header__nav-item:hover,
+.main-header__nav-item:focus {
+  text-decoration: none;
+}
+.main-header__nav-item.active {
+  color: #e22d22;
+}
+.main-header__nav-item.active .icon {
+  fill: #e22d22;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+.main-header__nav-item-text {
+  padding-top: 0.1875rem;
+  max-width: 0;
+  max-height: 0;
+  -webkit-transition: max-width 250ms, max-height 250ms;
+  transition: max-width 250ms, max-height 250ms;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.main {
+  padding-left: 4.375rem;
+  -webkit-transition: padding-left 250ms;
+  transition: padding-left 250ms;
 }
