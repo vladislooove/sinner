@@ -62,8 +62,7 @@ class AddSins extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        sins: state.sins,
-        isLoading: state.loading
+        sins: state.sins
     }
 }
 

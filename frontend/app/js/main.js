@@ -14769,8 +14769,7 @@ var AddSins = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        sins: state.sins,
-        isLoading: state.loading
+        sins: state.sins
     };
 };
 
@@ -14861,8 +14860,7 @@ var Home = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        todaySins: state.todaySins,
-        isLoading: state.loading
+        todaySins: state.todaySins
     };
 };
 
@@ -14972,8 +14970,7 @@ var Sins = function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
     return {
-        sins: state.sins,
-        isLoading: state.loading
+        sins: state.sins
     };
 };
 

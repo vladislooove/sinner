@@ -23,8 +23,7 @@ class Home extends React.Component{
 
 const mapStateToProps = state => {
     return {
-        todaySins: state.todaySins,
-        isLoading: state.loading
+        todaySins: state.todaySins
     }
 }
 
