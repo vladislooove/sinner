@@ -6,11 +6,15 @@ const apiPrefix = 'http://localhost:8080';
 
 export default {
     listSins(){
-        return axios.get(apiPrefix + '/sins');
+        return axios.get(`${apiPrefix}/sins`);
     },
 
     listTodaySins(){
-    	return axios.get(apiPrefix + '/sins/today');
+    	return axios.get(`${apiPrefix}/sins/today`);
+    },
+
+    listSinsByDate(date){
+        return axios.get(`${apiPrefix}/sins/${date.dayFrom}/${date.monthFrom}/${date.yearFrom}/${date.dayTill}/${date.monthTill}/${date.yearTill}`);
     },
 
     addSins(data){
