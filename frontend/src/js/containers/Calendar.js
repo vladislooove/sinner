@@ -1,5 +1,6 @@
 import React from 'react';
 import { DateRange } from 'react-date-range';
+import { Link } from 'react-router-dom';
 
 
 class Calendar extends React.Component{
@@ -15,7 +16,9 @@ class Calendar extends React.Component{
                     onChange={this.handleSelect}
                     firstDayOfWeek={1}
                     maxDate={today}
-                 />
+                    theme={calendarTheme}
+                />
+                <Link to={`/sins`}>link</Link>
             </h1>
         )
     }
@@ -25,24 +28,27 @@ export default Calendar;
 
 const calendarTheme = {
     DateRange: {
-        background   : '#ffffff'
+        background: '#000',
+        border: '1px solid #e22d22',
+        width: '562px'
     },
     Calendar: {
         background: 'transparent',
         color: '#95a5a6',
     },
     MonthAndYear: {
-        background: '#e74c3c',
-        color: '#9e3024'
+        background: '#111',
+        color: '#fff',
+        border: '1px solid #e22d22'
     },
     MonthButton: {
-        background: '#c0392b'
+        background: '#e22d22'
     },
     MonthArrowPrev: {
-        borderRightColor: '#d96659',
+        borderRightColor: '#000',
     },
     MonthArrowNext: {
-        borderLeftColor: '#d96659',
+        borderLeftColor: '#000',
     },
     Weekday: {
         background: '#e74c3c',

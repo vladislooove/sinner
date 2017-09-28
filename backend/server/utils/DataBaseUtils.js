@@ -55,6 +55,22 @@ export function listTodaySins(){
     );
 }
 
+export function listSinsByDate(params){
+    const dateFrom = new Date(`${params.yearFrom} ${params.monthFrom} ${params.dayFrom}`);
+    const dateTill = new Date(`${params.yearTill} ${params.monthTill} ${params.dayTill}`);
+    console.log(dateFrom);
+    console.log(dateTill);
+
+    return Sins.find(
+        {
+            createdAt: {
+                $gte: dateFrom,
+                $lte: dateTill
+            }
+        }
+    )
+}
+
 export function getSin(id){
     console.log(Sins.findById(id))
     return Sins.findById(id);
