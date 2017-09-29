@@ -30903,6 +30903,9 @@ exports.default = {
     listTodaySins: function listTodaySins() {
         return _axios2.default.get(apiPrefix + '/sins/today');
     },
+    listSinsByDate: function listSinsByDate(date) {
+        return _axios2.default.get(apiPrefix + '/sins/' + date.dayFrom + '/' + date.monthFrom + '/' + date.yearFrom + '/' + date.dayTill + '/' + date.monthTill + '/' + date.yearTill);
+    },
     addSins: function addSins(data) {
         return _axios2.default.post(apiPrefix + '/sins', data);
     },

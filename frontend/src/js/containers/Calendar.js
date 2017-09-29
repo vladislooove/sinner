@@ -18,7 +18,7 @@ class Calendar extends React.Component{
                     maxDate={today}
                     theme={calendarTheme}
                 />
-                <Link to={`/sins`}>link</Link>
+                <Link to='/calendar/sins'>link</Link>
             </h1>
         )
     }
