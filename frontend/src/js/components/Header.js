@@ -1,6 +1,8 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
+import Icon from './common/Icon';
+
 const Header = () => {
     return (
         <header className='main-header'>
@@ -9,33 +11,25 @@ const Header = () => {
                          activeClassName='active'
                          exact
                          className='main-header__nav-item'>
-                    <svg className='icon icon--home'> 
-                        <use xlinkHref='images/svg-symbols.svg#home'></use> 
-                    </svg>
+                    <Icon icon='home' />
                     <span className='main-header__nav-item-text'>Home</span>
                 </NavLink>
                 <NavLink to='/sins' 
                          activeClassName='active'
                          className='main-header__nav-item'>
-                    <svg className='icon icon--list'> 
-                        <use xlinkHref='images/svg-symbols.svg#list'></use> 
-                    </svg>
+                    <Icon icon='list' />
                     <span className='main-header__nav-item-text'>Sins list</span>
                 </NavLink>
                 <NavLink to='/addsins' 
                          activeClassName='active'
                          className='main-header__nav-item'>
-                    <svg className='icon icon--add'> 
-                        <use xlinkHref='images/svg-symbols.svg#add'></use> 
-                    </svg>
+                    <Icon icon='add' />
                     <span className='main-header__nav-item-text'>Add Sins</span>
                 </NavLink>
                 <NavLink to='/calendar' 
                          activeClassName='active'
                          className='main-header__nav-item'>
-                    <svg className='icon icon--calendar'> 
-                        <use xlinkHref='images/svg-symbols.svg#calendar'></use> 
-                    </svg>
+                    <Icon icon='calendar' />
                     <span className='main-header__nav-item-text'>Timing</span>
                 </NavLink>
             </nav>
