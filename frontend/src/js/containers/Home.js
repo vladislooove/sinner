@@ -1,7 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { loadTodaySins } from '../actions/'
+import { loadTodaySins } from '../actions/';
+
+import SinsList from '../components/SinsList';
 
 
 class Home extends React.Component{
@@ -13,9 +15,7 @@ class Home extends React.Component{
             <div> 
                 HOME 
                 <h1> today: </h1>
-                {this.props.todaySins.map((item)=>{
-                    return (<p key={item._id}>{item.name}, {item.circle}, {item.createdAt}, {item.category}</p>)
-                })}
+                <SinsList sins={this.props.todaySins} />
             </div>
         )
     }
