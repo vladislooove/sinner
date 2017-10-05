@@ -10,13 +10,20 @@ class SinCard extends React.Component{
         this.props.deleteSins(id);
     }
     render(){
+        let formatDate = (date) =>{
+            if(date < 10){
+                return `0${date}`
+            }
+            return date;
+        }
+
         let createdAt = new Date(this.props.createdAt)
-        let createdAtDay = createdAt.getDay();
-        let createdAtMonth = createdAt.getMonth();
+        let createdAtDay = formatDate(createdAt.getDay());
+        let createdAtMonth = formatDate(createdAt.getMonth() + 1);
         let createdAtYear = createdAt.getFullYear();
 
-        let createdAtHours = createdAt.getHours();
-        let createdAtMinutes = createdAt.getMinutes();
+        let createdAtHours = formatDate(createdAt.getHours());
+        let createdAtMinutes = formatDate(createdAt.getMinutes());
 
         return (
             <div className='col-xs-6 col-sm-4'>
