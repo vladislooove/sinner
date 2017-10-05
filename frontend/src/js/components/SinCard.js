@@ -38,9 +38,9 @@ class SinCard extends React.Component{
                     </div>
                     <button className='sin-card__delete'
                             onClick={this.deleteSin.bind(this, this.props.id)}>
-                        delete
+                        ×
                     </button>
-                    <h1  className='sin-cart__title'>
+                    <h1 className='sin-card__title'>
                         {this.props.name}
                     </h1>
                     <div className='sin-card__additional'>

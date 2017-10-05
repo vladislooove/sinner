@@ -31095,13 +31095,20 @@ var SinCard = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var formatDate = function formatDate(date) {
+                if (date < 10) {
+                    return '0' + date;
+                }
+                return date;
+            };
+
             var createdAt = new Date(this.props.createdAt);
-            var createdAtDay = createdAt.getDay();
-            var createdAtMonth = createdAt.getMonth();
+            var createdAtDay = formatDate(createdAt.getDay());
+            var createdAtMonth = formatDate(createdAt.getMonth() + 1);
             var createdAtYear = createdAt.getFullYear();
 
-            var createdAtHours = createdAt.getHours();
-            var createdAtMinutes = createdAt.getMinutes();
+            var createdAtHours = formatDate(createdAt.getHours());
+            var createdAtMinutes = formatDate(createdAt.getMinutes());
 
             return _react2.default.createElement(
                 'div',

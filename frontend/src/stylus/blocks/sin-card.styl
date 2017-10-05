@@ -1,0 +1,65 @@
+.sin-card
+    position relative
+    display flex
+    flex-direction column
+    border 1px solid $brand-primary
+    min-height calc(100% - 15px)
+    margin-bottom 15px
+    padding 50px 15px
+    background-color #000
+
+    &::before
+        position absolute
+        top 0
+        right 0
+        bottom 0
+        left 0
+        z-index 100
+        content ''
+        opacity 0
+        box-shadow inset 0 0 3px 3px $brand-primary
+        transition opacity $time-md
+        pointer-events none
+
+    &:hover,
+    &:focus
+        &::before
+            opacity 1
+
+        .sin-card__delete
+            opacity 1
+
+    &__date
+        position absolute
+        top 10px
+        left -2px
+        z-index 100
+        display flex
+        flex-direction column
+        padding 5px
+        background-color #333
+        font-size 12px
+        color #fff
+
+    &__delete
+        position absolute
+        top 5px
+        right 5px
+        background none
+        outline none
+        border none
+        transition all $time-md
+        opacity 0
+        font-size 18px
+        transform scale(1)
+
+        &:hover,
+        &:focus
+            transform scale(1.4)
+
+    &__title
+        font-size 16px
+        text-transform uppercase
+
+    &__additional
+        font-size 14px
