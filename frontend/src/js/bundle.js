@@ -31145,7 +31145,8 @@ var SinCard = function (_React$Component) {
                         'div',
                         { className: 'sin-card__additional' },
                         this.props.additional
-                    )
+                    ),
+                    _react2.default.createElement('div', { className: 'sin-card__circle-info' })
                 )
             );
         }

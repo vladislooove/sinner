@@ -5,7 +5,7 @@
     border 1px solid $brand-primary
     min-height calc(100% - 15px)
     margin-bottom 15px
-    padding 50px 15px
+    padding 50px 15px 100px 15px
     background-color #000
 
     &::before
@@ -21,6 +21,7 @@
         transition opacity $time-md
         pointer-events none
 
+
     &:hover,
     &:focus
         &::before
@@ -28,6 +29,31 @@
 
         .sin-card__delete
             opacity 1
+
+        .sin-card__circle-info
+            height 100px
+
+    &__circle-info
+        position absolute
+        right 0
+        bottom 0
+        left 0
+        height 70px
+        content ''
+        background-repeat no-repeat
+        background-size cover
+        transition height $time-md
+
+        &::before
+            position absolute
+            top 0
+            right 0
+            bottom 0
+            left 0
+            z-index 10
+            content ''
+            background linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, .2) 100%)
+
 
     &__date
         position absolute
@@ -63,3 +89,39 @@
 
     &__additional
         font-size 14px
+
+    &--1
+        .sin-card__circle-info
+            background-image url('../images/circle/short/1.jpg')
+
+    &--2
+        .sin-card__circle-info
+            background-image url('../images/circle/short/2.jpg')
+
+    &--3
+        .sin-card__circle-info
+            background-image url('../images/circle/short/3.jpg')
+
+    &--4
+        .sin-card__circle-info
+            background-image url('../images/circle/short/4.jpg')
+
+    &--5
+        .sin-card__circle-info
+            background-image url('../images/circle/short/5.jpg')
+
+    &--6
+        .sin-card__circle-info
+            background-image url('../images/circle/short/6.jpg')
+
+    &--7
+        .sin-card__circle-info
+            background-image url('../images/circle/short/7.jpg')
+
+    &--8
+        .sin-card__circle-info
+            background-image url('../images/circle/short/8.jpg')
+
+    &--9
+        .sin-card__circle-info
+            background-image url('../images/circle/short/9.jpg')

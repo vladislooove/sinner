@@ -46,6 +46,7 @@ class SinCard extends React.Component{
                     <div className='sin-card__additional'>
                         {this.props.additional}
                     </div>
+                    <div className="sin-card__circle-info"></div>
                 </article>
             </div>
         )
