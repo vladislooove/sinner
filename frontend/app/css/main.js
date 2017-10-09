@@ -31134,18 +31134,19 @@ var SinCard = function (_React$Component) {
                         'button',
                         { className: 'sin-card__delete',
                             onClick: this.deleteSin.bind(this, this.props.id) },
-                        'delete'
+                        '\xD7'
                     ),
                     _react2.default.createElement(
                         'h1',
-                        { className: 'sin-cart__title' },
+                        { className: 'sin-card__title' },
                         this.props.name
                     ),
                     _react2.default.createElement(
                         'div',
                         { className: 'sin-card__additional' },
                         this.props.additional
-                    )
+                    ),
+                    _react2.default.createElement('div', { className: 'sin-card__circle-info' })
                 )
             );
         }
