@@ -13,7 +13,7 @@ class Sins extends React.Component{
     render(){
         return(
             <div>
-                Sins
+                <h1>Список ваших гріхів:</h1>
                 <SinsList sins={this.props.sins} />
             </div> 
         )

@@ -1,4 +1,5 @@
 import api from '../api/';
+import { browserHistory } from 'react-router';
 
 export const loadSins = () => {
     return dispatch =>{
@@ -48,6 +49,29 @@ export const loadTodaySins = () => {
     }
 }
 
+export const loadSinById = (id) => {
+    return dispatch => {
+        dispatch({
+            type: 'LOAD_SIN_START'
+        })
+
+        api.getSinById(id).then(
+            response => dispatch({
+                type: 'LOAD_SIN_SUCCESS',
+                payload: response
+            },{
+                type: 'LOAD_SIN_END'
+            })
+        )
+        .catch(
+            error => dispatch({
+                type: 'LOAD_SIN_ERROR'
+            },{
+                type: 'LOAD_SIN_END'
+            })
+        )
+    }
+}
 
 export const addSins = (name, category, circle, additional) =>{
     return dispatch =>{
@@ -79,12 +103,16 @@ export const deleteSins = (id) => {
         })
 
         api.deleteSins(id).then(
-            response => dispatch({
-                type: 'DELETE_SINS_SUCCESS',
-                payload: id
-            },{
-                type: 'DELETE_SINS_END'
-            })
+            response => {
+                dispatch({
+                    type: 'DELETE_SINS_SUCCESS',
+                    payload: id
+                },{
+                    type: 'DELETE_SINS_END'
+                })
+                browserHistory.push('/sins/');
+            }
+
         )
         .catch(
             error => dispatch({

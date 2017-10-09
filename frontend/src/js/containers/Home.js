@@ -13,8 +13,7 @@ class Home extends React.Component{
     render(){
         return (
             <div> 
-                HOME 
-                <h1> today: </h1>
+                <h1>Список ваших гріхів за сьогодні: </h1>
                 <SinsList sins={this.props.todaySins} />
             </div>
         )

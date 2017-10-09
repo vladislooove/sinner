@@ -58,8 +58,6 @@ export function listTodaySins(){
 export function listSinsByDate(params){
     const dateFrom = new Date(`${params.yearFrom} ${params.monthFrom} ${params.dayFrom}`);
     const dateTill = new Date(`${params.yearTill} ${params.monthTill} ${params.dayTill}`);
-    console.log(dateFrom);
-    console.log(dateTill);
 
     return Sins.find(
         {

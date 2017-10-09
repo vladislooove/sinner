@@ -18,10 +18,14 @@ export default {
     },
 
     addSins(data){
-        return axios.post(apiPrefix + '/sins', data);
+        return axios.post(`${apiPrefix}/sins`, data);
     },
 
     deleteSins(sinsId){
-        return axios.delete(apiPrefix + '/sins/' + sinsId);
+        return axios.delete(`${apiPrefix}/sins/${sinsId}`);
+    },
+
+    getSinById(sinsId){
+        return axios.get(`${apiPrefix}/sins/${sinsId}`);
     }
 }
