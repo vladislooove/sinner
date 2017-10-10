@@ -1782,6 +1782,8 @@ hr {
   margin-bottom: 0.9375rem;
   padding: 3.125rem 0.9375rem 6.25rem 0.9375rem;
   background-color: #000;
+  color: #fff;
+  text-decoration: none;
 }
 .sin-card::before {
   position: absolute;
@@ -1797,17 +1799,24 @@ hr {
   transition: opacity 250ms;
   pointer-events: none;
 }
+.sin-card:hover,
+.sin-card:focus {
+  color: #fff;
+  text-decoration: none;
+}
 .sin-card:hover::before,
 .sin-card:focus::before {
-  opacity: 1;
-}
-.sin-card:hover .sin-card__delete,
-.sin-card:focus .sin-card__delete {
   opacity: 1;
 }
 .sin-card:hover .sin-card__circle-info,
 .sin-card:focus .sin-card__circle-info {
   height: 6.25rem;
+}
+.sin-card:hover .sin-card__circle,
+.sin-card:focus .sin-card__circle {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
 }
 .sin-card__circle-info {
   position: absolute;
@@ -1849,24 +1858,36 @@ hr {
   font-size: 0.75rem;
   color: #fff;
 }
-.sin-card__delete {
+.sin-card__circle {
   position: absolute;
-  top: 0.3125rem;
-  right: 0.3125rem;
-  background: none;
-  outline: none;
-  border: none;
-  -webkit-transition: all 250ms;
-  transition: all 250ms;
+  bottom: 0;
+  left: 0.3125rem;
+  z-index: 100;
+  padding: 0.3125rem;
+  font-weight: 700;
+  font-size: 1.625rem;
+  -webkit-transform: translateY(50%);
+          transform: translateY(50%);
   opacity: 0;
-  font-size: 1.125rem;
-  -webkit-transform: scale(1);
-          transform: scale(1);
+  -webkit-transition: opacity 250ms, -webkit-transform 250ms;
+  transition: opacity 250ms, -webkit-transform 250ms;
+  transition: transform 250ms, opacity 250ms;
+  transition: transform 250ms, opacity 250ms, -webkit-transform 250ms;
 }
-.sin-card__delete:hover,
-.sin-card__delete:focus {
-  -webkit-transform: scale(1.4);
-          transform: scale(1.4);
+.sin-card__circle--1,
+.sin-card__circle--2,
+.sin-card__circle--3 {
+  color: #e8aeab;
+}
+.sin-card__circle--4,
+.sin-card__circle--5,
+.sin-card__circle--6 {
+  color: #d04942;
+}
+.sin-card__circle--7,
+.sin-card__circle--8,
+.sin-card__circle--9 {
+  color: #e22d22;
 }
 .sin-card__title {
   font-size: 1rem;

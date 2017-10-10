@@ -18,6 +18,12 @@ const loading = (state = false, action) => {
 
         case 'DELETE_SINS_END':
         return false;
+
+        case 'LOAD_SIN_START':
+        return true;
+
+        case 'LOAD_SIN_END':
+        return false;
     
     default:
         return false;
