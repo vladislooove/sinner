@@ -31806,6 +31806,10 @@ var _actions = __webpack_require__(28);
 
 var _data = __webpack_require__(285);
 
+var _SinInfo = __webpack_require__(443);
+
+var _SinInfo2 = _interopRequireDefault(_SinInfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31824,10 +31828,18 @@ var AddSins = function (_React$Component) {
 
         _this.addSins = _this.addSins.bind(_this);
         _this.form = {};
+        _this.state = { circle: 1 };
         return _this;
     }
 
     _createClass(AddSins, [{
+        key: 'select',
+        value: function select(event) {
+            this.setState({
+                circle: this.form.select.value
+            });
+        }
+    }, {
         key: 'addSins',
         value: function addSins(event) {
             event.preventDefault();
@@ -31843,59 +31855,65 @@ var AddSins = function (_React$Component) {
             var _this2 = this;
 
             return _react2.default.createElement(
-                'form',
-                { className: 'add-sins',
-                    onSubmit: this.addSins },
+                'div',
+                null,
                 _react2.default.createElement(
-                    'div',
-                    { className: 'add-sins__group' },
+                    'form',
+                    { className: 'add-sins',
+                        onSubmit: this.addSins },
                     _react2.default.createElement(
                         'div',
-                        { className: 'add-sins__title' },
-                        'What have you done wrong?'
+                        { className: 'add-sins__group' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'add-sins__title' },
+                            'What have you done wrong?'
+                        ),
+                        _react2.default.createElement('input', { className: 'add-sins__input',
+                            placeholder: 'For example \'lied\'',
+                            ref: function ref(input) {
+                                return _this2.form.input = input;
+                            } }),
+                        _react2.default.createElement('textarea', { ref: function ref(textarea) {
+                                return _this2.form.textarea = textarea;
+                            } })
                     ),
-                    _react2.default.createElement('input', { className: 'add-sins__input',
-                        placeholder: 'For example \'lied\'',
-                        ref: function ref(input) {
-                            return _this2.form.input = input;
-                        } }),
-                    _react2.default.createElement('textarea', { ref: function ref(textarea) {
-                            return _this2.form.textarea = textarea;
-                        } })
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'add-sins__group' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'add-sins__title' },
-                        'What kind of sin have you done?'
+                        { className: 'add-sins__group' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'add-sins__title' },
+                            'What kind of sin have you done?'
+                        ),
+                        _react2.default.createElement(
+                            'select',
+                            { name: 'categories',
+                                onChange: this.select.bind(this),
+                                ref: function ref(select) {
+                                    return _this2.form.select = select;
+                                } },
+                            _data.infernoData.map(function (item) {
+                                return _react2.default.createElement(
+                                    'option',
+                                    { key: item.circle,
+                                        value: item.circle },
+                                    item.name
+                                );
+                            })
+                        )
                     ),
                     _react2.default.createElement(
-                        'select',
-                        { name: 'categories',
-                            ref: function ref(select) {
-                                return _this2.form.select = select;
-                            } },
-                        _data.infernoData.map(function (item) {
-                            return _react2.default.createElement(
-                                'option',
-                                { key: item.circle,
-                                    value: item.circle },
-                                item.name
-                            );
-                        })
+                        'div',
+                        { className: 'add-sins__group' },
+                        _react2.default.createElement(
+                            'button',
+                            { className: 'add-sins__submit' },
+                            'OK'
+                        )
                     )
                 ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'add-sins__group' },
-                    _react2.default.createElement(
-                        'button',
-                        { className: 'add-sins__submit' },
-                        'OK'
-                    )
-                )
+                _react2.default.createElement(_SinInfo2.default, { circle: this.state.circle })
             );
         }
     }]);

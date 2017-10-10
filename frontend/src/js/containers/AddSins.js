@@ -5,12 +5,21 @@ import { addSins } from '../actions/';
 
 import { infernoData } from '../localData/data';
 
+import SinInfo from '../components/SinInfo';
+
 
 class AddSins extends React.Component{
     constructor(props) {
         super(props);
         this.addSins = this.addSins.bind(this);
         this.form = {};
+        this.state = {circle: 1};
+    }
+
+    select(event){
+        this.setState({
+            circle: this.form.select.value
+        })
     }
 
     addSins(event){
@@ -23,7 +32,9 @@ class AddSins extends React.Component{
     }
         
     render(){
-        return (<form className="add-sins"
+        return (
+            <div>
+                <form className="add-sins"
                      onSubmit={this.addSins}>
                     <div className="add-sins__group">
                         <div className="add-sins__title">
@@ -39,6 +50,7 @@ class AddSins extends React.Component{
                             What kind of sin have you done?
                         </div>
                         <select name="categories"
+                                onChange={this.select.bind(this)}
                                 ref={(select) => this.form.select = select}>
                             {infernoData.map((item)=>{
                                 return ( 
@@ -56,6 +68,8 @@ class AddSins extends React.Component{
                         </button>
                     </div>
                 </form>
+                <SinInfo circle={this.state.circle} />
+            </div>
         )
     }
 } 
