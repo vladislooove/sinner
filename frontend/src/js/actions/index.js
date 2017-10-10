@@ -1,5 +1,4 @@
 import api from '../api/';
-import { browserHistory } from 'react-router';
 
 export const loadSins = () => {
     return dispatch =>{
@@ -101,7 +100,6 @@ export const deleteSins = (id) => {
         dispatch({
             type: 'DELETE_SINS_START'
         })
-
         api.deleteSins(id).then(
             response => {
                 dispatch({
@@ -110,7 +108,6 @@ export const deleteSins = (id) => {
                 },{
                     type: 'DELETE_SINS_END'
                 })
-                browserHistory.push('/sins/');
             }
 
         )

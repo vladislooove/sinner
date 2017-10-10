@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { loadSinById, deleteSins } from '../actions/'
+import { loadSinById, deleteSins } from '../actions/';
 
+import SinInfo from '../components/SinInfo';
 
 class SinsPage extends React.Component{
 
@@ -43,7 +44,7 @@ class SinsPage extends React.Component{
                     </span>
                 </div>
                 <div onClick={this.deleteSins.bind(this, this.props.currentSin._id)}>delete</div>
-                
+                <SinInfo circle={this.props.currentSin.circle} />
             </div>
         )
     }

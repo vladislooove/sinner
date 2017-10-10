@@ -7999,8 +7999,6 @@ var _api = __webpack_require__(275);
 
 var _api2 = _interopRequireDefault(_api);
 
-var _reactRouter = __webpack_require__(423);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var loadSins = exports.loadSins = function loadSins() {
@@ -8099,7 +8097,6 @@ var deleteSins = exports.deleteSins = function deleteSins(id) {
         dispatch({
             type: 'DELETE_SINS_START'
         });
-
         _api2.default.deleteSins(id).then(function (response) {
             dispatch({
                 type: 'DELETE_SINS_SUCCESS',
@@ -8107,7 +8104,6 @@ var deleteSins = exports.deleteSins = function deleteSins(id) {
             }, {
                 type: 'DELETE_SINS_END'
             });
-            _reactRouter.browserHistory.push('/sins/');
         }).catch(function (error) {
             return dispatch({
                 type: 'DELETE_SINS_ERROR'
@@ -32282,6 +32278,10 @@ var _reactRedux = __webpack_require__(20);
 
 var _actions = __webpack_require__(28);
 
+var _SinInfo = __webpack_require__(443);
+
+var _SinInfo2 = _interopRequireDefault(_SinInfo);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -32358,7 +32358,8 @@ var SinsPage = function (_React$Component) {
                     'div',
                     { onClick: this.deleteSins.bind(this, this.props.currentSin._id) },
                     'delete'
-                )
+                ),
+                _react2.default.createElement(_SinInfo2.default, { circle: this.props.currentSin.circle })
             );
         }
     }]);
@@ -48109,49 +48110,7 @@ NavLink.defaultProps = {
 /* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0_react_router_es_withRouter__["a" /* default */]);
 
 /***/ }),
-/* 423 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__ = __webpack_require__(235);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "MemoryRouter", function() { return __WEBPACK_IMPORTED_MODULE_0__MemoryRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Prompt__ = __webpack_require__(236);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Prompt", function() { return __WEBPACK_IMPORTED_MODULE_1__Prompt__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Redirect__ = __webpack_require__(237);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Redirect", function() { return __WEBPACK_IMPORTED_MODULE_2__Redirect__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Route__ = __webpack_require__(73);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Route", function() { return __WEBPACK_IMPORTED_MODULE_3__Route__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__Router__ = __webpack_require__(44);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Router", function() { return __WEBPACK_IMPORTED_MODULE_4__Router__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__StaticRouter__ = __webpack_require__(238);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "StaticRouter", function() { return __WEBPACK_IMPORTED_MODULE_5__StaticRouter__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__Switch__ = __webpack_require__(239);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "Switch", function() { return __WEBPACK_IMPORTED_MODULE_6__Switch__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__matchPath__ = __webpack_require__(45);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "matchPath", function() { return __WEBPACK_IMPORTED_MODULE_7__matchPath__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__withRouter__ = __webpack_require__(240);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "withRouter", function() { return __WEBPACK_IMPORTED_MODULE_8__withRouter__["a"]; });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
+/* 423 */,
 /* 424 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -49495,6 +49454,70 @@ function symbolObservablePonyfill(root) {
 
 	return result;
 };
+
+/***/ }),
+/* 443 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _react = __webpack_require__(4);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _data = __webpack_require__(285);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var SinInfo = function SinInfo(props) {
+    var currentSinInfo;
+    _data.infernoData.map(function (item) {
+        if (item.circle == props.circle) {
+            currentSinInfo = item;
+        }
+    });
+    if (currentSinInfo) {
+        return _react2.default.createElement(
+            'article',
+            { className: 'sin-info' },
+            _react2.default.createElement('img', { src: '/images/circle/detailed/' + currentSinInfo.circle + '.jpg',
+                alt: 'currentSinInfo.name',
+                className: 'sin-info__media' }),
+            _react2.default.createElement(
+                'h1',
+                { className: 'sin-info__name' },
+                currentSinInfo.name
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'sin-info__circle' },
+                _react2.default.createElement(
+                    'span',
+                    { className: 'sin-info__circle-label' },
+                    '\u041A\u043E\u043B\u043E'
+                ),
+                _react2.default.createElement(
+                    'span',
+                    { className: 'sin-info__circle-value' },
+                    currentSinInfo.circle
+                )
+            ),
+            _react2.default.createElement(
+                'div',
+                { className: 'sin-info__content' },
+                currentSinInfo.description
+            )
+        );
+    }
+    return null;
+};
+
+exports.default = SinInfo;
 
 /***/ })
 /******/ ]);
