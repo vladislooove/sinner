@@ -43,7 +43,10 @@ class SinsPage extends React.Component{
                         {`${createdAtHours}:${createdAtMinutes}`}
                     </span>
                 </div>
-                <div onClick={this.deleteSins.bind(this, this.props.currentSin._id)}>delete</div>
+                <div onClick={this.deleteSins.bind(this, this.props.currentSin._id)}
+                     className='sin-page__delete'>
+                    я покаявся
+                </div>
                 <SinInfo circle={this.props.currentSin.circle} />
             </div>
         )

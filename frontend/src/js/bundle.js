@@ -32356,8 +32356,9 @@ var SinsPage = function (_React$Component) {
                 ),
                 _react2.default.createElement(
                     'div',
-                    { onClick: this.deleteSins.bind(this, this.props.currentSin._id) },
-                    'delete'
+                    { onClick: this.deleteSins.bind(this, this.props.currentSin._id),
+                        className: 'sin-page__delete' },
+                    '\u044F \u043F\u043E\u043A\u0430\u044F\u0432\u0441\u044F'
                 ),
                 _react2.default.createElement(_SinInfo2.default, { circle: this.props.currentSin.circle })
             );
