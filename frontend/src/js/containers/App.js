@@ -26,7 +26,7 @@ class App extends React.Component{
                             <Route path='/sins/:id' component={SinsPage}/>
                             <Route path='/addsins' component={AddSins} />
                             <Route exact path='/calendar' component={Calendar} />
-                            <Route path='calendar/sins' component={CalendarSins}></Route>
+                            <Route path='/calendar/sins' component={CalendarSins} />
                         </Switch>
                         <div className={this.props.isLoading ? 'loader visible' : 'loader'}>
                             <svg className="icon icon--cross"> 

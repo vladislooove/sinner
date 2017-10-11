@@ -120,3 +120,36 @@ export const deleteSins = (id) => {
         )
     }
 }
+
+export const loadSinsByDate = (dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill) => {
+    let date = {
+        dayFrom,
+        monthFrom,
+        yearFrom,
+        dayTill,
+        monthTill,
+        yearTill
+    }
+    
+    return dispatch => {
+        dispatch({
+            type: 'LOAD_SIN_BY_DATE_START'
+        })
+
+        api.listSinsByDate(date).then(
+            response => dispatch({
+                type: 'LOAD_SIN_BY_DATE_SUCCESS',
+                payload: response
+            },{
+                type: 'LOAD_SIN_BY_DATE_END'
+            })
+        )
+        .catch(
+            error => dispatch({
+                type: 'LOAD_SIN_BY_DATE_ERROR'
+            },{
+                type: 'LOAD_SIN_BY_DATE_END'
+            })
+        )
+    }
+}

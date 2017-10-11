@@ -7993,7 +7993,7 @@ module.exports = reactProdInvariant;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.deleteSins = exports.addSins = exports.loadSinById = exports.loadTodaySins = exports.loadSins = undefined;
+exports.loadSinsByDate = exports.deleteSins = exports.addSins = exports.loadSinById = exports.loadTodaySins = exports.loadSins = undefined;
 
 var _api = __webpack_require__(271);
 
@@ -8109,6 +8109,38 @@ var deleteSins = exports.deleteSins = function deleteSins(id) {
                 type: 'DELETE_SINS_ERROR'
             }, {
                 type: 'DELETE_SINS_ERROR'
+            });
+        });
+    };
+};
+
+var loadSinsByDate = exports.loadSinsByDate = function loadSinsByDate(dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill) {
+    var date = {
+        dayFrom: dayFrom,
+        monthFrom: monthFrom,
+        yearFrom: yearFrom,
+        dayTill: dayTill,
+        monthTill: monthTill,
+        yearTill: yearTill
+    };
+
+    return function (dispatch) {
+        dispatch({
+            type: 'LOAD_SIN_BY_DATE_START'
+        });
+
+        _api2.default.listSinsByDate(date).then(function (response) {
+            return dispatch({
+                type: 'LOAD_SIN_BY_DATE_SUCCESS',
+                payload: response
+            }, {
+                type: 'LOAD_SIN_BY_DATE_END'
+            });
+        }).catch(function (error) {
+            return dispatch({
+                type: 'LOAD_SIN_BY_DATE_ERROR'
+            }, {
+                type: 'LOAD_SIN_BY_DATE_END'
             });
         });
     };
@@ -30110,7 +30142,7 @@ var App = function (_React$Component) {
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/sins/:id', component: _SinsPage2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { path: '/addsins', component: _AddSins2.default }),
                             _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/calendar', component: _Calendar2.default }),
-                            _react2.default.createElement(_reactRouterDom.Route, { path: 'calendar/sins', component: _CalendarSins2.default })
+                            _react2.default.createElement(_reactRouterDom.Route, { path: '/calendar/sins', component: _CalendarSins2.default })
                         ),
                         _react2.default.createElement(
                             'div',
@@ -31486,6 +31518,10 @@ var _reactDateRange = __webpack_require__(328);
 
 var _reactRouterDom = __webpack_require__(23);
 
+var _reactRedux = __webpack_require__(20);
+
+var _actions = __webpack_require__(28);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31509,6 +31545,12 @@ var Calendar = function (_React$Component) {
             console.log(range);
         }
     }, {
+        key: 'viewSinsByDate',
+        value: function viewSinsByDate() {
+            this.props.loadSinsByDate();
+            console.log('sfdd');
+        }
+    }, {
         key: 'render',
         value: function render() {
             var date = new Date();
@@ -31529,7 +31571,9 @@ var Calendar = function (_React$Component) {
                 }),
                 _react2.default.createElement(
                     _reactRouterDom.Link,
-                    { to: '/calendar/sins', className: 'add-sins__submit' },
+                    { to: '/calendar/sins',
+                        className: 'add-sins__submit',
+                        onClick: this.viewSinsByDate },
                     '\u041F\u043E\u043A\u0430\u0437\u0430\u0442\u0438'
                 )
             );
@@ -31539,7 +31583,15 @@ var Calendar = function (_React$Component) {
     return Calendar;
 }(_react2.default.Component);
 
-exports.default = Calendar;
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+    return {
+        loadSinsByDate: function loadSinsByDate(dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill) {
+            dispatch((0, _actions.loadSinsByDate)(dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill));
+        }
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Calendar);
 
 
 var calendarTheme = {
@@ -31610,6 +31662,12 @@ var _react = __webpack_require__(4);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _reactRedux = __webpack_require__(20);
+
+var _SinsList = __webpack_require__(80);
+
+var _SinsList2 = _interopRequireDefault(_SinsList);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -31618,30 +31676,41 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Calendar = function (_React$Component) {
-    _inherits(Calendar, _React$Component);
+var CalendarSins = function (_React$Component) {
+    _inherits(CalendarSins, _React$Component);
 
-    function Calendar() {
-        _classCallCheck(this, Calendar);
+    function CalendarSins() {
+        _classCallCheck(this, CalendarSins);
 
-        return _possibleConstructorReturn(this, (Calendar.__proto__ || Object.getPrototypeOf(Calendar)).apply(this, arguments));
+        return _possibleConstructorReturn(this, (CalendarSins.__proto__ || Object.getPrototypeOf(CalendarSins)).apply(this, arguments));
     }
 
-    _createClass(Calendar, [{
+    _createClass(CalendarSins, [{
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'h1',
+                'div',
                 null,
-                'Calencad'
+                _react2.default.createElement(
+                    'h1',
+                    null,
+                    '\u0417\u043D\u0430\u0439\u0434\u0435\u043D\u0456 \u0440\u0435\u0437\u0443\u043B\u044C\u0442\u0430\u0442\u0438:'
+                ),
+                _react2.default.createElement(_SinsList2.default, { sins: this.props.calendarSins })
             );
         }
     }]);
 
-    return Calendar;
+    return CalendarSins;
 }(_react2.default.Component);
 
-exports.default = Calendar;
+var mapStateToProps = function mapStateToProps(state) {
+    return {
+        calendarSins: state.calendarSins
+    };
+};
+
+exports.default = (0, _reactRedux.connect)(mapStateToProps, null)(CalendarSins);
 
 /***/ }),
 /* 278 */
@@ -32006,10 +32075,10 @@ var calendarSins = function calendarSins() {
     var action = arguments[1];
 
     switch (action.type) {
-        case 'LOAD_SINS_SUCCESS':
+        case 'LOAD_SINS_BY_DATE_SUCCESS':
             return action.payload.data;
 
-        case 'LOAD_SINS_ERROR':
+        case 'LOAD_SINS_BY_DATE_ERROR':
             return state;
 
         default:

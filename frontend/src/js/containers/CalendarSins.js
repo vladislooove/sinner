@@ -1,11 +1,26 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-class Calendar extends React.Component{
+import SinsList from '../components/SinsList';
+
+class CalendarSins extends React.Component{
     render(){
         return (
-            <h1>Calencad</h1>
+            <div>
+                <h1>Знайдені результати:</h1>
+                <SinsList sins={this.props.calendarSins} />
+            </div>
         )
     }
 }
 
-export default Calendar;
+const mapStateToProps = state => {
+    return {
+        calendarSins: state.calendarSins
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(CalendarSins)

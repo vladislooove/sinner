@@ -2,10 +2,18 @@ import React from 'react';
 import { DateRange } from 'react-date-range';
 import { Link } from 'react-router-dom';
 
+import { connect } from 'react-redux';
+
+import { loadSinsByDate } from '../actions/'
+
 
 class Calendar extends React.Component{
     handleSelect(range){
         console.log(range);
+    }
+    viewSinsByDate(){
+        this.props.loadSinsByDate();
+        console.log('sfdd')
     }
     render(){
         let date = new Date();
@@ -21,13 +29,26 @@ class Calendar extends React.Component{
                     maxDate={today}
                     theme={calendarTheme}
                 />
-                <Link to='/calendar/sins' className ='add-sins__submit'>Показати</Link>
+                <Link to='/calendar/sins' 
+                      className ='add-sins__submit'
+                      onClick={this.viewSinsByDate}>Показати</Link>
             </div>
         )
     }
 }
 
-export default Calendar;
+const mapDispatchToProps = dispatch => {
+    return {
+        loadSinsByDate: (dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill) => {
+            dispatch(loadSinsByDate(dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill))
+        },
+    }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Calendar)
 
 const calendarTheme = {
     DateRange: {
