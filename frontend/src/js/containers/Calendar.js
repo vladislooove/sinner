@@ -11,15 +11,18 @@ class Calendar extends React.Component{
         let date = new Date();
         const today = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`; 
         return (
-            <h1>
+            <div>
+                <h1>
+                    Перегляд по даті
+                </h1>
                 <DateRange
                     onChange={this.handleSelect}
                     firstDayOfWeek={1}
                     maxDate={today}
                     theme={calendarTheme}
                 />
-                <Link to='/calendar/sins'>link</Link>
-            </h1>
+                <Link to='/calendar/sins' className ='add-sins__submit'>Показати</Link>
+            </div>
         )
     }
 }
@@ -30,7 +33,8 @@ const calendarTheme = {
     DateRange: {
         background: '#000',
         border: '1px solid #e22d22',
-        width: '562px'
+        width: '562px',
+        marginBottom: '30px'
     },
     Calendar: {
         background: 'transparent',

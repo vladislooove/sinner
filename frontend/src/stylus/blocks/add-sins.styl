@@ -1,0 +1,35 @@
+.add-sins
+    &__group
+        margin-bottom 30px
+
+    &__input,
+    &__select
+        padding 10px
+        width 100%
+        outline none
+        border 1px solid #fff
+        background-color #333
+        margin-bottom 15px
+        transition border-color $time-md
+
+        &:focus
+            border-color $brand-primary
+
+    &__submit
+        display inline-block
+        padding 10px 20px
+        text-transform uppercase
+        font-weight 700
+        color #fff
+        border 1px solid #fff
+        cursor pointer
+        transition all $time-md
+        background-color #000
+        text-decoration none
+
+        &:hover,
+        &:focus
+            color #000
+            border-color #000
+            background-color #fff
+            text-decoration none

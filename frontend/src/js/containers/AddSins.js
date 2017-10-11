@@ -34,24 +34,28 @@ class AddSins extends React.Component{
     render(){
         return (
             <div>
-                <form className="add-sins"
+                <form className='add-sins'
                      onSubmit={this.addSins}>
-                    <div className="add-sins__group">
-                        <div className="add-sins__title">
-                            What have you done wrong?
-                        </div>
-                        <input className="add-sins__input"
-                            placeholder="For example 'lied'"
+                    <div className='add-sins__group'>
+                        <h1>
+                            Що Ви накоїли?
+                        </h1>
+                        <input className='add-sins__input'
+                            placeholder='Наприклад "збрехав"'
                             ref={(input) => this.form.input = input} />
-                        <textarea ref={(textarea) => this.form.textarea = textarea} />
+                        <textarea ref={(textarea) => this.form.textarea = textarea}
+                                  placeholder='Коментар'
+                                  rows='4'
+                                  className='add-sins__input' />
                     </div>
-                    <div className="add-sins__group">
-                        <div className="add-sins__title">
-                            What kind of sin have you done?
-                        </div>
-                        <select name="categories"
+                    <div className='add-sins__group'>
+                        <h2>
+                            Оберіть тип
+                        </h2>
+                        <select name='categories'
                                 onChange={this.select.bind(this)}
-                                ref={(select) => this.form.select = select}>
+                                ref={(select) => this.form.select = select}
+                                className='add-sins__select'>
                             {infernoData.map((item)=>{
                                 return ( 
                                     <option key={item.circle}
@@ -62,9 +66,9 @@ class AddSins extends React.Component{
                             )}
                         </select>
                     </div>
-                    <div className="add-sins__group">
-                        <button className="add-sins__submit">
-                            OK
+                    <div className='add-sins__group'>
+                        <button className='add-sins__submit'>
+                            Додати
                         </button>
                     </div>
                 </form>
