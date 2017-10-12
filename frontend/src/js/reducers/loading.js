@@ -24,6 +24,12 @@ const loading = (state = false, action) => {
 
         case 'LOAD_SIN_END':
         return false;
+
+        case 'LOAD_SIN_BY_DATE_START':
+        return true;
+
+        case 'LOAD_SIN_BY_DATE_END':
+        return false;
     
     default:
         return false;

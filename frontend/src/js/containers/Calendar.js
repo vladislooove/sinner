@@ -8,30 +8,35 @@ import { loadSinsByDate } from '../actions/'
 
 
 class Calendar extends React.Component{
-    handleSelect(range){
-        console.log(range);
+    constructor(props) {
+        super(props);
     }
-    viewSinsByDate(){
-        this.props.loadSinsByDate();
-        console.log('sfdd')
+
+    handleSelect(range){
+        var dayFrom = range.startDate._d.getDate();
+        var monthFrom = range.startDate._d.getMonth() + 1;
+        var yearFrom = range.startDate._d.getFullYear();
+        var dayTill = range.endDate._d.getDate();
+        var monthTill = range.endDate._d.getMonth() + 1;
+        var yearTill = range.endDate._d.getFullYear();
+        this.props.loadSinsByDate(dayFrom, monthFrom, yearFrom, dayTill, monthTill, yearTill);
     }
     render(){
         let date = new Date();
-        const today = `${date.getDate()}.${date.getMonth()+1}.${date.getFullYear()}`; 
+        const today = `${date.getDate()+1}.${date.getMonth()+1}.${date.getFullYear()}`; 
         return (
             <div>
                 <h1>
                     Перегляд по даті
                 </h1>
                 <DateRange
-                    onChange={this.handleSelect}
+                    onChange={this.handleSelect.bind(this)}
                     firstDayOfWeek={1}
                     maxDate={today}
                     theme={calendarTheme}
                 />
                 <Link to='/calendar/sins' 
-                      className ='add-sins__submit'
-                      onClick={this.viewSinsByDate}>Показати</Link>
+                      className ='add-sins__submit'>Показати</Link>
             </div>
         )
     }

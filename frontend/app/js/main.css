@@ -1977,3 +1977,41 @@ hr {
 .sin-info__circle-value {
   margin-left: 0.3125rem;
 }
+.add-sins__group {
+  margin-bottom: 1.875rem;
+}
+.add-sins__input,
+.add-sins__select {
+  padding: 0.625rem;
+  width: 100%;
+  outline: none;
+  border: 1px solid #fff;
+  background-color: #333;
+  margin-bottom: 0.9375rem;
+  -webkit-transition: border-color 250ms;
+  transition: border-color 250ms;
+}
+.add-sins__input:focus,
+.add-sins__select:focus {
+  border-color: #e22d22;
+}
+.add-sins__submit {
+  display: inline-block;
+  padding: 0.625rem 1.25rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #fff;
+  border: 1px solid #fff;
+  cursor: pointer;
+  -webkit-transition: all 250ms;
+  transition: all 250ms;
+  background-color: #000;
+  text-decoration: none;
+}
+.add-sins__submit:hover,
+.add-sins__submit:focus {
+  color: #000;
+  border-color: #000;
+  background-color: #fff;
+  text-decoration: none;
+}

@@ -13,7 +13,7 @@ const SinCard = (props) =>{
     }
 
     let createdAt = new Date(props.createdAt)
-    let createdAtDay = formatDate(createdAt.getDay());
+    let createdAtDay = formatDate(createdAt.getDate());
     let createdAtMonth = formatDate(createdAt.getMonth() + 1);
     let createdAtYear = createdAt.getFullYear();
 
