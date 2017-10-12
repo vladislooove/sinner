@@ -1663,6 +1663,9 @@ hr {
   visibility: visible;
   pointer-events: all;
 }
+.status {
+  text-align: center;
+}
 @-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);

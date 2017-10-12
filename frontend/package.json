@@ -13,6 +13,7 @@
     "react": "^15.5.4",
     "react-date-range": "^0.9.4",
     "react-dom": "^15.5.4",
+    "react-progress-circle": "^0.2.3",
     "react-redux": "^5.0.5",
     "react-router": "^4.1.1",
     "redux": "^3.7.1",
